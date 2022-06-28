@@ -13,7 +13,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.drusade.outdoorsie"
+        applicationId "com.uchumi.shopify"
         minSdk 21
         targetSdk 32
         versionCode 1
