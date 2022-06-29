@@ -9,7 +9,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56d97e2b-8bfd-4a56-b770-1b6d3319e113" name="Changes" comment="" />
+    <list default="true" id="56d97e2b-8bfd-4a56-b770-1b6d3319e113" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/uchumi/shopify/ui/FavouritesActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_favourites.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,6 +97,9 @@
     </key>
     <key name="android.template.-1270166328">
       <recent name="com.uchumi.shopify" />
+    </key>
+    <key name="android.template.-1942633057">
+      <recent name="com.uchumi.shopify.ui" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.uchumi.shopify.ui" />
