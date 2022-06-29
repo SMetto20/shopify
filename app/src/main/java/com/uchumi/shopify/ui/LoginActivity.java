@@ -69,6 +69,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        mGoogleSignOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignClient = GoogleSignIn.getClient(this, mGoogleSignOptions);
+
         mBackHomeButton.setOnClickListener(this);
         mCreateAccountTextView.setOnClickListener(this);
         mLoginButton.setOnClickListener(this);
