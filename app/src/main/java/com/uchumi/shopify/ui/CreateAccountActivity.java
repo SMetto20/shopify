@@ -1,8 +1,10 @@
-package com.uchumi.shopify;
+package com.uchumi.shopify.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.uchumi.shopify.R;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
