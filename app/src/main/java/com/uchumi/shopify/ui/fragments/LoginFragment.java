@@ -1,17 +1,19 @@
-package com.uchumi.shopify.ui;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+package com.uchumi.shopify.ui.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -25,11 +27,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.uchumi.shopify.R;
+import com.uchumi.shopify.ui.CreateAccountActivity;
+import com.uchumi.shopify.ui.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+
+public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -63,17 +68,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.twitterButton) FloatingActionButton mTwitterButton;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_login, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this,view);
 
         mGoogleSignOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
-        mGoogleSignClient = GoogleSignIn.getClient(this, mGoogleSignOptions);
+        mGoogleSignClient = GoogleSignIn.getClient(getActivity(), mGoogleSignOptions);
 
         mBackHomeButton.setOnClickListener(this);
         mCreateAccountTextView.setOnClickListener(this);
@@ -89,10 +99,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                    finish();
                 }
             }
         };
@@ -101,9 +110,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == mCreateAccountTextView) {
-            Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
+            Intent intent = new Intent(getActivity(), CreateAccountActivity.class);
             startActivity(intent);
-            finish();
         }
         if (v == mLoginButton) {
             loginWithRegisteredAccount();
@@ -131,11 +139,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(getActivity(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -148,7 +156,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 100){
@@ -157,23 +165,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 task.getResult(ApiException.class);
                 MainActivity();
             } catch (ApiException e) {
-                Toast.makeText(this, "Unable to sign in", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Unable to sign in", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private void MainActivity(){
-        finish();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
     }
 
     private void SignInTwitter() {
-        Toast.makeText(LoginActivity.this, "Under construction", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Under construction", Toast.LENGTH_SHORT).show();
     }
 
     private void SignInFaceBook() {
-        Toast.makeText(LoginActivity.this, "Under construction", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Under construction", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -189,4 +196,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
 }

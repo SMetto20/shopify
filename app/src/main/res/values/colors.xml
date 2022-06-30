@@ -16,4 +16,7 @@
     <color name="colorPrimaryText">#2F6565</color>
     <color name="colorSecondaryText">#A0C4C2</color>
     <color name="colorDivider">#000000</color>
+    <color name="lightblue">#E2EBEC</color>
+    <color name="darkgreen">#2a6060</color>
+
 </resources>
