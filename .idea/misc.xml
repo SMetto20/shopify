@@ -10,7 +10,7 @@
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_favourites.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_saved_items.xml" value="0.335" />
         <entry key="app/src/main/res/layout/saved_recycler_view_list_item.xml" value="0.375" />
