@@ -18,11 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-<<<<<<< HEAD
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/delete/baseline_delete_24.xml" />
-=======
-                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/favorite/baseline_favorite_24.xml" />
->>>>>>> 2e9814550ddf1841461f880ff67eb282674ace9f
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/home/baseline_home_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -32,12 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-<<<<<<< HEAD
-                            <entry key="color" value="1f5a5a" />
-                            <entry key="outputName" value="ic_baseline_delete_24" />
-=======
-                            <entry key="outputName" value="ic_baseline_favorite_24" />
->>>>>>> 2e9814550ddf1841461f880ff67eb282674ace9f
+                            <entry key="color" value="337c7b" />
+                            <entry key="outputName" value="ic_baseline_home_24" />
                           </map>
                         </option>
                       </PersistentState>
