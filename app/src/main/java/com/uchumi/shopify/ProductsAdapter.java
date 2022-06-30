@@ -1,9 +1,12 @@
 package com.uchumi.shopify;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,10 +23,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         this.offerList = offerList;
     }
 
+
     @NonNull
     @Override
     public ProductsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view= LayoutInflater.from(context).inflate(R.layout.activity_best_selling, null, false);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -33,12 +38,21 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return 0;
+        return offerList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
+   TextView mTerm, mPrice, mSeller;
+   ImageView imageView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            mTerm=itemView.findViewById(R.id.itemTitle);
+            mPrice=itemView.findViewById(R.id.itemPrice);
+            mSeller=itemView.findViewById(R.id.shopName);
+
         }
     }
 }

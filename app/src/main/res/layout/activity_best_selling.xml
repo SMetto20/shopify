@@ -56,6 +56,18 @@
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="227dp" />
 
+            <TextView
+                android:id="@+id/shopName"
+                android:layout_width="65dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:inputType="textMultiLine"
+                android:text="Seller Name"
+                android:textColor="@color/darkgreen"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="250dp" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
