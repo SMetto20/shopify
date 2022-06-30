@@ -34,6 +34,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ProductsAdapter.ViewHolder holder, int position) {
 
+        holder.mTerm.setText(offerList.get(position).getName());
+        holder.mSeller.setText(offerList.get(position).getSeller());
+        holder.mPrice.setText(offerList.get(position).getPrice());
+        
+
     }
 
     @Override
@@ -52,6 +57,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             mTerm=itemView.findViewById(R.id.itemTitle);
             mPrice=itemView.findViewById(R.id.itemPrice);
             mSeller=itemView.findViewById(R.id.shopName);
+            imageView=itemView.findViewById(R.id.itemImageView);
 
         }
     }

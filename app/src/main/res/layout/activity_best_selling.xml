@@ -23,7 +23,7 @@
             android:background="@color/lightblue">
 
             <ImageView
-                android:id="@+id/ItemImageView"
+                android:id="@+id/itemImageView"
                 android:layout_width="162dp"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
