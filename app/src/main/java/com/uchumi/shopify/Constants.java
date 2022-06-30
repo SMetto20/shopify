@@ -2,6 +2,6 @@ package com.uchumi.shopify;
 
 
 public class Constants {
-    public static String BASE_URL = "https://rapidapi.com/3b-data-3b-data-default/api/google-shopping-data/";
+    public static String BASE_URL = "https://google-shopping-data.p.rapidapi.com/";
     public static String API_KEY = BuildConfig.API_KEY;
 }
