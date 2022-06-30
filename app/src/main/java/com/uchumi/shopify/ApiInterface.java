@@ -9,6 +9,5 @@ public interface ApiInterface {
     Call<Offers>getOffers(
             @Query("term") String term,
             @Query("country") String country
-);
-
+    );
 }

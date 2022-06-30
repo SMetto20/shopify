@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
@@ -36,8 +38,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         holder.mTerm.setText(offerList.get(position).getName());
         holder.mSeller.setText(offerList.get(position).getSeller());
-        holder.mPrice.setText(offerList.get(position).getPrice());
-        
+        //holder.mPrice.setText(offerList.get(position).getPrice());
+        Picasso.get().load(offerList.get(position).getUrl()).into(holder.imageView);
+
 
     }
 

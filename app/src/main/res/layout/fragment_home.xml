@@ -7,14 +7,14 @@
     android:background="@color/lightblue">
 
         <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="35dp"
             android:background="@drawable/search_bg"
-            app:queryHint="Search"
-            />
+            app:queryHint="Search" />
 
 
         <TextView
@@ -63,7 +63,7 @@
             android:backgroundTint="@color/colorSecondaryText"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/filterCategories"
+            android:id="@+id/filterProducts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="200dp"
