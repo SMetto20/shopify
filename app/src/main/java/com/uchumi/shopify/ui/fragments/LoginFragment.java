@@ -125,6 +125,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         if (v == mFacebookButton){
             SignInFaceBook();
         }
+        if (v == mBackHomeButton){
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void loginWithRegisteredAccount() {
