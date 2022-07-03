@@ -34,6 +34,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String mName;
 
+    @BindView(R.id.backHomeButton) Button mBackHomeButton;
+
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.textViewTitle) TextView mTextViewTitle;
 
@@ -65,6 +67,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
         mLoginTextView.setOnClickListener(this);
         mSignUpButton.setOnClickListener(this);
+        mBackHomeButton.setOnClickListener(this);
 
         createAuthStateListener();
     }
@@ -163,6 +166,10 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         }
         if (v == mSignUpButton) {
             createNewUser();
+        }
+        if(v == mBackHomeButton){
+            Intent intent = new Intent(CreateAccountActivity.this, CreateAccountActivity.class);
+            startActivity(intent);
         }
     }
 

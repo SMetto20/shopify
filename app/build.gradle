@@ -78,4 +78,7 @@ dependencies {
     //FirebaseUI
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+
+    //Ripple
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
 }

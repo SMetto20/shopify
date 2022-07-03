@@ -3,7 +3,10 @@ package com.uchumi.shopify.ui.fragments;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -38,6 +41,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    /*boolean passwordVisible;*/
     GoogleSignInOptions mGoogleSignOptions;
     GoogleSignInClient mGoogleSignClient;
 
@@ -74,10 +78,37 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this,view);
+
+        /*mUserLoginPasswordEditText.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int Right = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP){
+                    if(event.getRawX() >= mUserLoginPasswordEditText.getRight() - mUserLoginPasswordEditText.getCompoundDrawables()[Right].getBounds().width()){
+                        int selection = mUserLoginPasswordEditText.getSelectionEnd();
+                        if (passwordVisible){
+                            mUserLoginPasswordEditText.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_baseline_visibility_off_24, 0);
+                            mUserLoginPasswordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            passwordVisible = false;
+                        }
+                        else {
+                            mUserLoginPasswordEditText.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_baseline_visibility_24, 0);
+                            mUserLoginPasswordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passwordVisible = true;
+                        }
+                        mUserLoginPasswordEditText.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });*/
 
         mGoogleSignOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -124,6 +155,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
         if (v == mFacebookButton){
             SignInFaceBook();
+        }
+        if (v == mBackHomeButton){
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -196,5 +231,4 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-
 }
