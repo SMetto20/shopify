@@ -16,13 +16,13 @@ public class Offer {
     private String url;
     @SerializedName("price")
     @Expose
-    private Double price;
+    private float price;
     @SerializedName("currency")
     @Expose
     private String currency;
     @SerializedName("shipping")
     @Expose
-    private Long shipping;
+    private Float shipping;
     @SerializedName("condition")
     @Expose
     private String condition;
@@ -38,6 +38,40 @@ public class Offer {
     @SerializedName("review_count")
     @Expose
     private String reviewCount;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public Offer() {
+    }
+
+    /**
+     * 
+     * @param seller
+     * @param condition
+     * @param shipping
+     * @param sellerUrl
+     * @param reviewCount
+     * @param price
+     * @param name
+     * @param currency
+     * @param reviewRating
+     * @param url
+     */
+    public Offer(String name, String url, float price, String currency, Float shipping, String condition, String seller, String sellerUrl, String reviewRating, String reviewCount) {
+        super();
+        this.name = name;
+        this.url = url;
+        this.price = price;
+        this.currency = currency;
+        this.shipping = shipping;
+        this.condition = condition;
+        this.seller = seller;
+        this.sellerUrl = sellerUrl;
+        this.reviewRating = reviewRating;
+        this.reviewCount = reviewCount;
+    }
 
     public String getName() {
         return name;
@@ -55,11 +89,11 @@ public class Offer {
         this.url = url;
     }
 
-    public Double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -71,11 +105,11 @@ public class Offer {
         this.currency = currency;
     }
 
-    public Long getShipping() {
+    public Float getShipping() {
         return shipping;
     }
 
-    public void setShipping(Long shipping) {
+    public void setShipping(Float shipping) {
         this.shipping = shipping;
     }
 

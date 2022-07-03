@@ -11,8 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.models.Offer;
+import com.uchumi.shopify.models.Offers;
+
 
 import java.util.List;
 
@@ -39,7 +42,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         holder.mTerm.setText(offerList.get(position).getName());
         holder.mSeller.setText(offerList.get(position).getSeller());
-        //holder.mPrice.setText(offerList.get(position).getPrice());
+        holder.mPrice.setText((int) offerList.get(position).getPrice() + " $");
         Picasso.get().load(offerList.get(position).getUrl()).into(holder.imageView);
 
 
@@ -55,9 +58,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
    TextView mTerm, mPrice, mSeller;
    ImageView imageView;
 
+        private Context mContext;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            mContext = itemView.getContext();
             mTerm=itemView.findViewById(R.id.itemTitle);
             mPrice=itemView.findViewById(R.id.itemPrice);
             mSeller=itemView.findViewById(R.id.shopName);

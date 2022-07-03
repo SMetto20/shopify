@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("jsonschema2pojo")
-public class Example {
+public class OffersResponse {
 
     @SerializedName("error")
     @Expose
@@ -14,6 +14,24 @@ public class Example {
     @SerializedName("offers")
     @Expose
     private Offers offers;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public OffersResponse() {
+    }
+
+    /**
+     * 
+     * @param offers
+     * @param error
+     */
+    public OffersResponse(Boolean error, Offers offers) {
+        super();
+        this.error = error;
+        this.offers = offers;
+    }
 
     public Boolean getError() {
         return error;
