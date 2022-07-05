@@ -18,8 +18,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     private ImageView mImageView1;
     float v = 0;
 
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.homeImageView) ImageView mImageView;
+    /*@SuppressLint("NonConstantResourceId")
+    @BindView(R.id.homeImageView) ImageView mImageView;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +37,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         mImageView1.setAlpha(v);
         mImageView1.animate().translationX(0).alpha(1).setDuration(2000).setStartDelay(600).start();
 
-        mImageView.setOnClickListener(v ->{
+        /*mImageView.setOnClickListener(v ->{
             Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
             startActivity(intent);
-        });
+        });*/
 
         new Handler().postDelayed(new Runnable() {
             @Override
