@@ -94,7 +94,7 @@
       <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.shopify:app [signingReport]">
+  <component name="RunManager" selected="Android App.app">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="Shopify.app" />
       <option name="DEPLOY" value="true" />
