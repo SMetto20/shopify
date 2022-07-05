@@ -7,14 +7,18 @@
         android:title="home" />
 
     <item
-        android:id="@+id/nav_login"
-        android:icon="@drawable/ic_baseline_person_add_alt_1_24"
-        android:title="login"/>
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="search"/>
 
     <item
         android:id="@+id/nav_favorites"
         android:icon="@drawable/ic_baseline_favorite_24"
         android:title="favorites"/>
 
+    <item
+        android:id="@+id/nav_login"
+        android:icon="@drawable/ic_baseline_person_add_alt_1_24"
+        android:title="login"/>
 
 </menu>
