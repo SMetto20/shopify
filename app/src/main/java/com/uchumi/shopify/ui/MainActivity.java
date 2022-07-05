@@ -17,6 +17,7 @@ import com.uchumi.shopify.ui.fragments.HomeFragment;
 import com.uchumi.shopify.ui.fragments.LoginFragment;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.ui.fragments.SavedItemsFragment;
+import com.uchumi.shopify.ui.fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();
+                    new SearchFragment()).commit();
         }
     }
 
@@ -49,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.nav_favorites:
                             selectedFragment = new SavedItemsFragment();
+                            break;
+                        case R.id.nav_search:
+                            selectedFragment = new SearchFragment();
                             break;
                     }
 
