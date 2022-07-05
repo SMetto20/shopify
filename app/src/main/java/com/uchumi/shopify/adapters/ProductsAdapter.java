@@ -50,7 +50,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         holder.mTerm.setText(offerList.get(position).getName());
         holder.mSeller.setText(offerList.get(position).getSeller());
         holder.mPrice.setText((int) offerList.get(position).getPrice() + " $");
-        getImages();
+        getImages(position);
         Picasso.get().load(imageUrl).into(holder.imageView);
 
 
@@ -61,13 +61,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         return offerList.size();
     }
 
-
-    public void getImages(){
+    public void getImages(int position){
         Thread thread = new Thread() {
             @Override
             public void run() {
+                
                 try {
-                    Document document = Jsoup.connect(offerList.get(5).getUrl()).get();
+                    Document document = Jsoup.connect(offerList.get(position).getUrl()).get();
                     Elements elements = document.select("div.oR27Gd");
                     imageUrl = elements.select("img").attr("src");
                     Log.i("imageUrl", imageUrl);
@@ -75,6 +75,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                     e.printStackTrace();
                 }
             }
+
         };
         thread.start();
     }
