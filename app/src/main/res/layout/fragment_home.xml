@@ -61,6 +61,41 @@
             tools:ignore="MissingConstraints"
             android:backgroundTint="@color/colorSecondaryText"/>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="78dp"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="135dp"
+            android:layout_marginEnd="179dp"
+            android:backgroundTint="@color/colorSecondaryText"
+            android:src=""
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="78dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="133dp"
+            android:layout_marginEnd="94dp"
+            android:backgroundTint="@color/colorSecondaryText"
+            android:src="@drawable/ic_baseline_star_outline_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/filterProducts"
             android:layout_width="match_parent"
