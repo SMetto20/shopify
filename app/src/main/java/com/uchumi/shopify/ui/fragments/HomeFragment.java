@@ -16,16 +16,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.adapters.ProductsAdapter;
 import com.uchumi.shopify.models.Offer;
-import com.uchumi.shopify.models.Offers;
 import com.uchumi.shopify.models.OffersResponse;
 import com.uchumi.shopify.network.ApiClient;
 import com.uchumi.shopify.network.ApiInterface;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -55,7 +52,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
     @Override
     public boolean onQueryTextSubmit(String term) {
-       term= searchView.getQuery().toString();
+        term= searchView.getQuery().toString();
         Toast.makeText(getActivity(), "You searched for " + term, Toast.LENGTH_SHORT).show();
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<OffersResponse> call = apiInterface.getOffers(term, country,1);
