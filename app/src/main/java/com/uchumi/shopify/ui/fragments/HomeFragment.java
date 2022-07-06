@@ -71,6 +71,25 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
                 productsAdapter.notifyDataSetChanged();
             }
         });
+
+        //Sort by Reviews
+        mReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(offerList, Offer.sortReviews);
+                productsAdapter.notifyDataSetChanged();
+            }
+        });
+
+        //Sort by Shipping
+        mShipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(offerList, Offer.sortShipping);
+                productsAdapter.notifyDataSetChanged();
+
+            }
+        });
         return v;
 
 
