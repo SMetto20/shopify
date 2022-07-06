@@ -39,6 +39,9 @@ public class Offer {
     @Expose
     private String reviewCount;
 
+//    push ID
+    private String pushId;
+
     /**
      * No args constructor for use in serialization
      * 
@@ -151,6 +154,16 @@ public class Offer {
 
     public void setReviewCount(String reviewCount) {
         this.reviewCount = reviewCount;
+    }
+
+//methods to retrieve or assign the relevant ID to an object.
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 
 }
