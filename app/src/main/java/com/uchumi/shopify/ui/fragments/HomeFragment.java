@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.adapters.ProductsAdapter;
 import com.uchumi.shopify.models.Offer;
@@ -45,6 +46,11 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         searchView=v.findViewById(R.id.search_bar);
         homeRecyclerview= v.findViewById(R.id.filterProducts);
         searchView.setOnQueryTextListener(this);
+
+        FloatingActionButton mPrice=(FloatingActionButton) v.findViewById(R.id.filterByPrice);
+        FloatingActionButton mRatings =(FloatingActionButton) v.findViewById(R.id.filterByRatings);
+        FloatingActionButton mShipping=(FloatingActionButton) v.findViewById(R.id.filterByShipping);
+        FloatingActionButton mReviews=(FloatingActionButton) v.findViewById(R.id.filterByReviews);
         return v;
 
     }
