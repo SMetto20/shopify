@@ -194,6 +194,13 @@ public class Offer {
         }
     };
 
+// sort by reviews method
 
+    public static Comparator<Offer> sortShipping=new Comparator<Offer>() {
+        @Override
+        public int compare(Offer o1, Offer o2) {
+            return (int) (o1.getShipping()-o2.getShipping());
+        }
+    };
 
 }
