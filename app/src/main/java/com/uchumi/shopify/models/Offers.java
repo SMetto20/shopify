@@ -15,6 +15,7 @@ public class Offers {
     @SerializedName("offers")
     @Expose
     private List<Offer> offers = null;
+    String categoryTitle;
 
     /**
      * No args constructor for use in serialization
@@ -28,8 +29,9 @@ public class Offers {
      * @param offers
      * @param offersCount
      */
-    public Offers(Integer offersCount, List<Offer> offers) {
+    public Offers(Integer offersCount, List<Offer> offers, String categoryTitle) {
         super();
+        this.categoryTitle = categoryTitle;
         this.offersCount = offersCount;
         this.offers = offers;
     }
@@ -49,5 +51,14 @@ public class Offers {
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
     }
+
+    public String getCategoryTitle() {
+        return categoryTitle;
+    }
+
+    public void setCategoryTitle(String categoryTitle) {
+        this.categoryTitle = categoryTitle;
+    }
+
 
 }

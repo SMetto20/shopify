@@ -1,66 +1,76 @@
 package com.uchumi.shopify.ui.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.uchumi.shopify.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SearchFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.uchumi.shopify.R;
+import com.uchumi.shopify.adapters.MainRecyclerAdapter;
+import com.uchumi.shopify.models.Offer;
+import com.uchumi.shopify.models.Offers;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SearchFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private Context mContext;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView mMainRecyclerView;
+    private MainRecyclerAdapter mMainRecyclerAdapter;
 
     public SearchFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SearchFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SearchFragment newInstance(String param1, String param2) {
-        SearchFragment fragment = new SearchFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        List<Offer> offerList1 = new ArrayList<Offer>(){
+
+        };
+
+        List<Offer> offerList2 = new ArrayList<Offer>(){
+
+        };
+
+        List<Offer> offerList3 = new ArrayList<Offer>(){
+
+        };
+
+
+        List<Offers> allCategoryList = new ArrayList<>();
+        allCategoryList.add(new Offers(offerList1.size(), offerList1, "Electronics"));
+        allCategoryList.add(new Offers(offerList2.size(), offerList2, "Socks"));
+        allCategoryList.add(new Offers(offerList3.size(), offerList3, "Cosmetics"));
+
+    }
+
+    private void setMainCategoryRecycler(List<Offers> allCategoryList){
+
+        mMainRecyclerView = mMainRecyclerView.findViewById(R.id.main_recycler);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        mMainRecyclerView.setLayoutManager(layoutManager);
+        mMainRecyclerView.setAdapter(mMainRecyclerAdapter);
+        mMainRecyclerAdapter = new MainRecyclerAdapter(getActivity(), allCategoryList);
+
+
+    }
+
 }
