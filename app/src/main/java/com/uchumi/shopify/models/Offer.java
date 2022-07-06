@@ -185,6 +185,15 @@ public class Offer {
         }
     };
 
+    //sort by reviews methods
+
+    public static Comparator<Offer> sortReviews =new Comparator<Offer>() {
+        @Override
+        public int compare(Offer o1, Offer o2) {
+            return o1.getReviewCount().compareTo(o2.getReviewCount());
+        }
+    };
+
 
 
 }
