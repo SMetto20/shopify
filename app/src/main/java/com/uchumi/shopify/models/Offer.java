@@ -5,6 +5,8 @@ import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Comparator;
+
 @Generated("jsonschema2pojo")
 public class Offer {
 
@@ -165,5 +167,15 @@ public class Offer {
     public void setPushId(String pushId) {
         this.pushId = pushId;
     }
+
+// sort by price method
+    public static Comparator<Offer> sortPrice = new Comparator<Offer>() {
+        @Override
+        public int compare(Offer o1, Offer o2) {
+            return (int) (o1.getPrice()-o2.getPrice());
+        }
+    };
+
+
 
 }
