@@ -24,6 +24,7 @@ import com.uchumi.shopify.models.OffersResponse;
 import com.uchumi.shopify.network.ApiClient;
 import com.uchumi.shopify.network.ApiInterface;
 
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -51,9 +52,30 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         FloatingActionButton mRatings =(FloatingActionButton) v.findViewById(R.id.filterByRatings);
         FloatingActionButton mShipping=(FloatingActionButton) v.findViewById(R.id.filterByShipping);
         FloatingActionButton mReviews=(FloatingActionButton) v.findViewById(R.id.filterByReviews);
+
+
+        // Sort by Price
+        mPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(offerList, Offer.sortPrice);
+                productsAdapter.notifyDataSetChanged();
+            }
+        });
+
+        //sort by Ratings
+        mRatings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(offerList, Offer.sortRatings);
+                productsAdapter.notifyDataSetChanged();
+            }
+        });
         return v;
 
+
     }
+
 
 
     @Override
