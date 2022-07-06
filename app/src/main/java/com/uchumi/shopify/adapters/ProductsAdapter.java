@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.models.Offer;
@@ -44,7 +47,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     @SuppressLint("ResourceType")
     @Override
-    public void onBindViewHolder(@NonNull ProductsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductsAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.mTerm.setText(offerList.get(position).getName());
         holder.mSeller.setText(offerList.get(position).getSeller());
@@ -56,6 +59,15 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         } else {
             Picasso.get().load(imageUrl).into(holder.imageView);
         }
+
+        holder.mLikeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.push().setValue(offerList.get(position));
+                Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
@@ -86,7 +98,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
    TextView mTerm, mPrice, mSeller;
-   ImageView imageView;
+   ImageView imageView, mLikeButton;
 
         private Context mContext;
 
@@ -97,6 +109,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             mPrice=itemView.findViewById(R.id.itemPrice);
             mSeller=itemView.findViewById(R.id.shopName);
             imageView=itemView.findViewById(R.id.itemImageView);
+            mLikeButton = itemView.findViewById(R.id.favoriteItems);
 
         }
     }
