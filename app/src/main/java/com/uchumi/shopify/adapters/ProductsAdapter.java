@@ -1,7 +1,7 @@
 package com.uchumi.shopify.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
-
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.models.Offer;
-
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -44,14 +42,20 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onBindViewHolder(@NonNull ProductsAdapter.ViewHolder holder, int position) {
 
         holder.mTerm.setText(offerList.get(position).getName());
         holder.mSeller.setText(offerList.get(position).getSeller());
         holder.mPrice.setText((int) offerList.get(position).getPrice() + " $");
-        getImages();
-        Picasso.get().load(imageUrl).into(holder.imageView);
+        getImages(position);
+        if (imageUrl == "") {
+            String url = "https://www.trendsetter.com/pub/media/catalog/product/placeholder/default/no_image_placeholder.jpg";
+            Picasso.get().load(url).into(holder.imageView);
+        } else {
+            Picasso.get().load(imageUrl).into(holder.imageView);
+        }
 
 
     }
@@ -62,12 +66,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     }
 
 
-    public void getImages(){
+    public void getImages(int position) {
         Thread thread = new Thread() {
             @Override
             public void run() {
                 try {
-                    Document document = Jsoup.connect(offerList.get(5).getUrl()).get();
+                    Document document = Jsoup.connect(offerList.get(position).getUrl()).timeout(6000)   .get();
                     Elements elements = document.select("div.oR27Gd");
                     imageUrl = elements.select("img").attr("src");
                     Log.i("imageUrl", imageUrl);

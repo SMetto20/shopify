@@ -93,5 +93,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
     //jsoup
-    implementation "org.jsoup:jsoup:1.9.2"
+    implementation 'org.jsoup:jsoup:1.9.2'
+
+    //Ripple
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
 }
