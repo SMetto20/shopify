@@ -7,9 +7,7 @@
 5. [Dependancies](#Dependncies)
 6. [About-author](#About-athor)
 ### Description
-an application that provides a users with the most effective products from different online stores by utilizing a marginal benefit and cost benefit formula to achieve this.
-
-The API used is the google shopping data API
+Shopify is an application that provides a users with the most effective products from different online stores by utilizing a marginal benefit and cost benefit formula to achieve this.The API used is the google shopping data API whixh retrieves products from various stores.
 ### Technology
 
 1. Java 
