@@ -1,10 +1,15 @@
-
 package com.uchumi.shopify.models;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
+import java.util.Comparator;
+
+import javax.annotation.Generated;
+
+@Parcel
 @Generated("jsonschema2pojo")
 public class Offer {
 
@@ -38,6 +43,9 @@ public class Offer {
     @SerializedName("review_count")
     @Expose
     private String reviewCount;
+
+//    push ID
+    private String pushId;
 
     /**
      * No args constructor for use in serialization
@@ -152,5 +160,48 @@ public class Offer {
     public void setReviewCount(String reviewCount) {
         this.reviewCount = reviewCount;
     }
+
+//methods to retrieve or assign the relevant ID to an object.
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
+
+// Sort Price method
+
+    public static Comparator<Offer> sortPrice =new Comparator<Offer>() {
+        @Override
+        public int compare(Offer o1, Offer o2) {
+            return (int) (o1.getPrice()-o2.getPrice());
+        }
+    };
+
+    //sort Ratings method
+    public static Comparator<Offer> sortRatings =new Comparator<Offer>() {
+        @Override
+        public int compare(Offer o1, Offer o2) {
+            return o1.getReviewRating().compareTo(o2.getReviewRating());
+        }
+    };
+
+    //Sort Shipping method
+    public static Comparator<Offer> sortShipping=new Comparator<Offer>() {
+        @Override
+        public int compare(Offer o1, Offer o2) {
+            return (int) (o1.getShipping()-o2.getShipping());
+        }
+    };
+
+    //Sort Reviews method
+    public static Comparator<Offer> sortReviews =new Comparator<Offer>() {
+        @Override
+        public int compare(Offer o1, Offer o2) {
+            return o1.getReviewCount().compareTo(o2.getReviewCount());
+        }
+    };
 
 }

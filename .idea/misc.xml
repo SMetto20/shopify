@@ -3,8 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_best_selling.xml" value="0.21" />
+<<<<<<< HEAD
+        <entry key="app/src/main/res/layout/activity_best_selling.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.10740740740740741" />
+        <entry key="app/src/main/res/layout/fragment_saved_items.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/saved_recycler_view_list_item.xml" value="0.18177083333333333" />
+=======
+        <entry key="app/src/main/res/drawable/favorite_items.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_baseline_file_download_done_24.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_baseline_local_shipping_24.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_baseline_star_outline_24.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/search_bg.xml" value="0.138" />
+        <entry key="app/src/main/res/layout/activity_best_selling.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_product_details.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_saved_items.xml" value="0.19375" />
+        <entry key="app/src/main/res/layout/saved_recycler_view_list_item.xml" value="0.19375" />
+>>>>>>> 254045d25a0492bbd1a3281ee44642c7e6e3725b
       </map>
     </option>
   </component>

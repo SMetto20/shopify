@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -16,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.adapters.ProductsAdapter;
 import com.uchumi.shopify.models.Offer;
@@ -23,6 +26,7 @@ import com.uchumi.shopify.models.OffersResponse;
 import com.uchumi.shopify.network.ApiClient;
 import com.uchumi.shopify.network.ApiInterface;
 
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -45,9 +49,54 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         searchView=v.findViewById(R.id.search_bar);
         homeRecyclerview= v.findViewById(R.id.filterProducts);
         searchView.setOnQueryTextListener(this);
+
+        FloatingActionButton mPrice=(FloatingActionButton) v.findViewById(R.id.filterByPrice);
+        FloatingActionButton mRatings =(FloatingActionButton) v.findViewById(R.id.filterByRatings);
+        FloatingActionButton mShipping=(FloatingActionButton) v.findViewById(R.id.filterByShipping);
+        FloatingActionButton mReviews=(FloatingActionButton) v.findViewById(R.id.filterByReviews);
+
+
+        // Sort by Price
+      mPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(offerList, Offer.sortPrice);
+                productsAdapter.notifyDataSetChanged();
+            }
+        });
+
+        //sort by Ratings
+       mRatings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(offerList, Offer.sortRatings);
+                productsAdapter.notifyDataSetChanged();
+            }
+        });
+
+        //Sort by Reviews
+        mReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(offerList, Offer.sortReviews);
+                productsAdapter.notifyDataSetChanged();
+            }
+        });
+
+        //Sort by Shipping
+       mShipping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(offerList, Offer.sortShipping);
+                productsAdapter.notifyDataSetChanged();
+
+            }
+        });
         return v;
 
+
     }
+
 
 
     @Override

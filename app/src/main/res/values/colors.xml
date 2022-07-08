@@ -18,5 +18,7 @@
     <color name="colorDivider">#000000</color>
     <color name="lightblue">#E2EBEC</color>
     <color name="darkgreen">#2a6060</color>
+    <color name="red">#ff0000</color>
+    <color name="lightgrey">#f4f3f2</color>
 
 </resources>
