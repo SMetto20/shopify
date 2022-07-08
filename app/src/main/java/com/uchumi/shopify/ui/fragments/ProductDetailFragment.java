@@ -67,7 +67,7 @@ public class ProductDetailFragment extends Fragment {
         mSellerNameTextView.setText(mShop.getSeller());
         mShippingPriceTextView.setText(Float.toString(mShop.getShipping()));
         mProductPriceTextView.setText(Float.toString(mShop.getPrice()));
-        mProductReviewTextView.setText(mShop.getReviewCount());
+        mProductReviewTextView.setText(mShop.getReviewCount() + " Reviews");
         mProductRatingsTextView.setText(mShop.getReviewRating());
 
         return view;
