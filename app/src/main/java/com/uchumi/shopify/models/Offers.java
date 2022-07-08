@@ -15,7 +15,7 @@ public class Offers {
     @SerializedName("offers")
     @Expose
     private List<Offer> offers = null;
-    String categoryTitle;
+    private String categoryTitle;
 
     /**
      * No args constructor for use in serialization
