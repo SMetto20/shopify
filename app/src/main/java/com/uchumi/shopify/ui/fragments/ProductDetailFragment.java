@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.uchumi.shopify.R;
+import com.uchumi.shopify.adapters.ProductsAdapter;
 import com.uchumi.shopify.models.Offer;
 
 import org.parceler.Parcels;
@@ -29,8 +31,10 @@ public class ProductDetailFragment extends Fragment {
     @BindView(R.id.viewSiteButton) Button mViewSiteButton;
     @BindView(R.id.productNameDetailTextView) TextView mProductNameTextView;
     @BindView(R.id.sellerNameDetailTextView) TextView mSellerNameTextView;
+    @BindView(R.id.imageProductDetailsView) ImageView mProductDetailsImage;
 
     private Offer mShop;
+    private ProductsAdapter mImageLoad;
 
 
     public ProductDetailFragment() {
@@ -61,8 +65,8 @@ public class ProductDetailFragment extends Fragment {
 
         mProductNameTextView.setText(mShop.getName());
         mSellerNameTextView.setText(mShop.getSeller());
-//        mShippingPriceTextView.setText((int) mShop.getPrice());
-//        mProductPriceTextView.setText(mShop.getShipping());
+        mShippingPriceTextView.setText(Float.toString(mShop.getShipping()));
+        mProductPriceTextView.setText(Float.toString(mShop.getPrice()));
         mProductReviewTextView.setText(mShop.getReviewCount());
         mProductRatingsTextView.setText(mShop.getReviewRating());
 
