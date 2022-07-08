@@ -6,18 +6,77 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.uchumi.shopify.Constants;
 import com.uchumi.shopify.R;
+import com.uchumi.shopify.adapters.FirebaseProductsAdapter;
+import com.uchumi.shopify.models.Offer;
+
+import org.parceler.Parcels;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class SavedItemsFragment extends Fragment {
+
+    DatabaseReference mDatabase;
+    FirebaseRecyclerAdapter<Offer, FirebaseProductsAdapter> mFirebaseAdapter;
+    @BindView(R.id.favouritesRecyclerView) RecyclerView mRecyclerView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_saved_items, container, false);
+        ButterKnife.bind(this, view);
+        setUpFirebaseAdapter();
         return view;
+    }
+
+    private void setUpFirebaseAdapter() {
+        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS);
+
+        FirebaseRecyclerOptions<Offer> options = new FirebaseRecyclerOptions.Builder<Offer>()
+                .setQuery(mDatabase, Offer.class)
+                .build();
+
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Offer, FirebaseProductsAdapter>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull FirebaseProductsAdapter holder, int position, @NonNull Offer model) {
+                holder.bindProduct(model);
+            }
+
+            @NonNull
+            @Override
+            public FirebaseProductsAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.saved_recycler_view_list_item, parent, false);
+                return new FirebaseProductsAdapter(view);
+            }
+        };
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.setAdapter(mFirebaseAdapter);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mFirebaseAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mFirebaseAdapter != null) {
+            mFirebaseAdapter.stopListening();
+        }
     }
 }
