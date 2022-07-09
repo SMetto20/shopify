@@ -48,14 +48,11 @@ public class FirebaseProductsAdapter extends RecyclerView.ViewHolder implements 
         ImageView mDeleteProduct = (ImageView)mView.findViewById(R.id.deleteBtn);
 
         Picasso.get().load("https://www.trendsetter.com/pub/media/catalog/product/placeholder/default/no_image_placeholder.jpg").into(mProductImage);
-
         mProductName.setText(offer.getName());
-       mProductPrice.setText("$" + offer.getPrice());
-       mProductRating.setText(offer.getReviewRating() + "/5");
-         mProductSite.setText(offer.getSeller());
+        mProductPrice.setText("$" + offer.getPrice());
+        mProductRating.setText(offer.getReviewRating() + "/5");
+        mProductSite.setText(offer.getSeller());
     }
-
-
 
     @Override
     public void onClick(View v) {

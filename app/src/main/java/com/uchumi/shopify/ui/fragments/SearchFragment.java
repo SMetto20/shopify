@@ -1,6 +1,5 @@
 package com.uchumi.shopify.ui.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,26 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.adapters.MainRecyclerAdapter;
-import com.uchumi.shopify.models.Offer;
-import com.uchumi.shopify.models.Offers;
-import com.uchumi.shopify.models.OffersResponse;
-import com.uchumi.shopify.network.ApiClient;
-import com.uchumi.shopify.network.ApiInterface;
+import com.uchumi.shopify.models.AllCategory;
+import com.uchumi.shopify.models.CategoryItem;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class SearchFragment extends Fragment {
 
     private RecyclerView mMainRecyclerView;
     private MainRecyclerAdapter mMainRecyclerAdapter;
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         return view;
     }
@@ -42,38 +35,62 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        /*List<Offer> offerList1 = new ArrayList<>();
-        offerList1.add(new Offer()){
-            ApiInterface client = ApiClient.getClient().create(ApiInterface.class);
-            Call<OffersResponse> call = client.getOffers("electronics", "us",1);
-            call.enqueue();
-        };*/
+        // category 1
+        List<CategoryItem> categoryItemList = new ArrayList<>();
+        categoryItemList.add(new CategoryItem(1, R.drawable.decor, "Decor"));
+        categoryItemList.add(new CategoryItem(1, R.drawable.furniture, "Furniture"));
+        categoryItemList.add(new CategoryItem(1, R.drawable.cleaning, "Cleaning"));
+        categoryItemList.add(new CategoryItem(1, R.drawable.lighting, "Lighting"));
+        categoryItemList.add(new CategoryItem(1, R.drawable.plants, "Plants"));
 
-        List<Offer> offerList2 = new ArrayList<>();
-        offerList2.add(new Offer(){
-            ApiInterface client = ApiClient.getClient().create(ApiInterface.class);
-            Call<OffersResponse> call = client.getOffers("electronics", "us",1);
-        });
+        // category 2
+        List<CategoryItem> categoryItemList2 = new ArrayList<>();
+        categoryItemList2.add(new CategoryItem(1, R.drawable.shoes, "Shoes"));
+        categoryItemList2.add(new CategoryItem(1, R.drawable.socks, "Socks"));
+        categoryItemList2.add(new CategoryItem(1, R.drawable.tops, "Tops"));
+        categoryItemList2.add(new CategoryItem(1, R.drawable.pants, "Bottoms"));
+        categoryItemList2.add(new CategoryItem(1, R.drawable.undergarment, "Undergarments"));
 
-        List<Offer> offerList3 = new ArrayList<>();
-        offerList3.add(new Offer(){
-            ApiInterface client = ApiClient.getClient().create(ApiInterface.class);
-            Call<OffersResponse> call = client.getOffers("electronics", "us",1);
-        });
+        // category 3
+        List<CategoryItem> categoryItemList3 = new ArrayList<>();
+        categoryItemList3.add(new CategoryItem(1, R.drawable.hair, "Hair"));
+        categoryItemList3.add(new CategoryItem(1, R.drawable.makeup, "Facial"));
+        categoryItemList3.add(new CategoryItem(1, R.drawable.lotion, "Lotion/Serum"));
+        categoryItemList3.add(new CategoryItem(1, R.drawable.nails, "Nail Care"));
+        categoryItemList3.add(new CategoryItem(1, R.drawable.waxing, "Waxing"));
 
-        List<Offers> allCategoryList = new ArrayList<>();
-        /*allCategoryList.add(new Offers(offerList1.size(), offerList1, "Electronics"));*/
-        allCategoryList.add(new Offers(offerList2.size(), offerList2, "Socks"));
-        allCategoryList.add(new Offers(offerList3.size(), offerList3, "Cosmetics"));
+        // category 4
+        List<CategoryItem> categoryItemList4 = new ArrayList<>();
+        categoryItemList4.add(new CategoryItem(1, R.drawable.phone, "Phones"));
+        categoryItemList4.add(new CategoryItem(1, R.drawable.speaker, "Sound"));
+        categoryItemList4.add(new CategoryItem(1, R.drawable.laptops, "Laptops"));
+        categoryItemList4.add(new CategoryItem(1, R.drawable.tv, "Tvs"));
+        categoryItemList4.add(new CategoryItem(1, R.drawable.extension, "Accessories"));
 
-        /*setMainCategoryRecycler(allCategoryList);*/
+
+        // category 5
+        List<CategoryItem> categoryItemList5 = new ArrayList<>();
+        categoryItemList5.add(new CategoryItem(1, R.drawable.bikini, "Swim Wear"));
+        categoryItemList5.add(new CategoryItem(1, R.drawable.equip, "Gym Equipment"));
+        categoryItemList5.add(new CategoryItem(1, R.drawable.balls, "Balls"));
+        categoryItemList5.add(new CategoryItem(1, R.drawable.gymwear, "Sports Clothes"));
+        categoryItemList5.add(new CategoryItem(1, R.drawable.sportshoes, "Sports Shoes"));
+
+        List<AllCategory> allCategoryList = new ArrayList<>();
+        allCategoryList.add(new AllCategory("Home", categoryItemList));
+        allCategoryList.add(new AllCategory("Clothing", categoryItemList2));
+        allCategoryList.add(new AllCategory("Body", categoryItemList3));
+        allCategoryList.add(new AllCategory("Electronics", categoryItemList4));
+        allCategoryList.add(new AllCategory("Sports Gear", categoryItemList5));
+
+        setMainCategoryRecycler(allCategoryList);
     }
 
-    private void setMainCategoryRecycler(List<Offers> allCategoryList){
-        mMainRecyclerView = mMainRecyclerView.findViewById(R.id.main_recycler);
+    private void setMainCategoryRecycler(List<AllCategory> allCategoryList){
+        mMainRecyclerView = requireView().findViewById(R.id.main_recycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mMainRecyclerView.setLayoutManager(layoutManager);
-        mMainRecyclerView.setAdapter(mMainRecyclerAdapter);
         mMainRecyclerAdapter = new MainRecyclerAdapter(getActivity(), allCategoryList);
+        mMainRecyclerView.setAdapter(mMainRecyclerAdapter);
     }
 }

@@ -11,54 +11,57 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.uchumi.shopify.R;
+import com.uchumi.shopify.models.AllCategory;
+import com.uchumi.shopify.models.CategoryItem;
 import com.uchumi.shopify.models.Offer;
 import com.uchumi.shopify.models.Offers;
 
 import java.util.List;
 
-public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder> {
+public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.MainViewHolder> {
 
     private Context mContext;
-    private List<Offers> mCategoryList;
+    private List<AllCategory> allCategoryList;
 
-    public MainRecyclerAdapter(Context mContext, List<Offers> mCategoryList) {
+    public MainRecyclerAdapter(Context mContext, List<AllCategory> allCategoryList) {
         this.mContext = mContext;
-        this.mCategoryList = mCategoryList;
+        this.allCategoryList = allCategoryList;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(mContext).inflate(R.layout.home_recycler_item, parent, false);
-        return new ViewHolder(view);
+    public MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MainViewHolder(LayoutInflater.from(mContext).inflate(R.layout.home_recycler_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.categoryTitle.setText(mCategoryList.get(position).getCategoryTitle());
-        setCategoryItemRecyclers(holder.mRecyclerView1, mCategoryList.get(position).getOffers());
+    public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
+
+        holder.categoryTitle.setText(allCategoryList.get(position).getCategoryTitle());
+        setCategoryItemRecycler(holder.itemRecycler, allCategoryList.get(position).getCategoryItemList());
+
     }
 
     @Override
     public int getItemCount() {
-        return mCategoryList.size();
+        return allCategoryList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static final class MainViewHolder extends RecyclerView.ViewHolder{
 
         TextView categoryTitle;
-        RecyclerView mRecyclerView1;
+        RecyclerView itemRecycler;
 
-        public ViewHolder(@NonNull View itemView) {
+        public MainViewHolder(@NonNull View itemView) {
             super(itemView);
-
             categoryTitle = itemView.findViewById(R.id.category_title);
-            mRecyclerView1 = itemView.findViewById(R.id.itemRecyclerView);
+            itemRecycler = itemView.findViewById(R.id.itemRecyclerView);
+
         }
     }
 
-    private void setCategoryItemRecyclers(RecyclerView recyclerView, List<Offer> mCategoryOfferItemList){
-        CategoryItemRecyclerAdapter itemRecyclerAdapter = new CategoryItemRecyclerAdapter(mContext, mCategoryOfferItemList);
+    private void setCategoryItemRecycler(RecyclerView recyclerView, List<CategoryItem> categoryItemList){
+        CategoryItemRecyclerAdapter itemRecyclerAdapter = new CategoryItemRecyclerAdapter(mContext, categoryItemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false));
         recyclerView.setAdapter(itemRecyclerAdapter);
     }
