@@ -37,44 +37,44 @@ public class SearchFragment extends Fragment {
 
         // category 1
         List<CategoryItem> categoryItemList = new ArrayList<>();
-        categoryItemList.add(new CategoryItem(1, R.drawable.decor, "Decor"));
-        categoryItemList.add(new CategoryItem(1, R.drawable.furniture, "Furniture"));
-        categoryItemList.add(new CategoryItem(1, R.drawable.cleaning, "Cleaning"));
-        categoryItemList.add(new CategoryItem(1, R.drawable.lighting, "Lighting"));
-        categoryItemList.add(new CategoryItem(1, R.drawable.plants, "Plants"));
+        categoryItemList.add(new CategoryItem(1, R.drawable.decor, "Decor", "Home decor"));
+        categoryItemList.add(new CategoryItem(1, R.drawable.furniture, "Furniture", "Furniture"));
+        categoryItemList.add(new CategoryItem(1, R.drawable.cleaning, "Cleaning", "Cleaning equipment"));
+        categoryItemList.add(new CategoryItem(1, R.drawable.lighting, "Lighting", "Home lighting"));
+        categoryItemList.add(new CategoryItem(1, R.drawable.plants, "Plants", "Potted plants"));
 
         // category 2
         List<CategoryItem> categoryItemList2 = new ArrayList<>();
-        categoryItemList2.add(new CategoryItem(1, R.drawable.shoes, "Shoes"));
-        categoryItemList2.add(new CategoryItem(1, R.drawable.socks, "Socks"));
-        categoryItemList2.add(new CategoryItem(1, R.drawable.tops, "Tops"));
-        categoryItemList2.add(new CategoryItem(1, R.drawable.pants, "Bottoms"));
-        categoryItemList2.add(new CategoryItem(1, R.drawable.undergarment, "Undergarments"));
+        categoryItemList2.add(new CategoryItem(1, R.drawable.shoes, "Shoes", "Shoes"));
+        categoryItemList2.add(new CategoryItem(1, R.drawable.socks, "Socks", "Socks"));
+        categoryItemList2.add(new CategoryItem(1, R.drawable.tops, "Tops", "Tops"));
+        categoryItemList2.add(new CategoryItem(1, R.drawable.pants, "Bottoms", "Trousers"));
+        categoryItemList2.add(new CategoryItem(1, R.drawable.undergarment, "Undergarments", "Undergarments"));
 
         // category 3
         List<CategoryItem> categoryItemList3 = new ArrayList<>();
-        categoryItemList3.add(new CategoryItem(1, R.drawable.hair, "Hair"));
-        categoryItemList3.add(new CategoryItem(1, R.drawable.makeup, "Facial"));
-        categoryItemList3.add(new CategoryItem(1, R.drawable.lotion, "Lotion/Serum"));
-        categoryItemList3.add(new CategoryItem(1, R.drawable.nails, "Nail Care"));
-        categoryItemList3.add(new CategoryItem(1, R.drawable.waxing, "Waxing"));
+        categoryItemList3.add(new CategoryItem(1, R.drawable.hair, "Hair", "Hair products"));
+        categoryItemList3.add(new CategoryItem(1, R.drawable.makeup, "Facial", "Makeup"));
+        categoryItemList3.add(new CategoryItem(1, R.drawable.lotion, "Lotion/Serum", "Lotions and serums"));
+        categoryItemList3.add(new CategoryItem(1, R.drawable.nails, "Nail Care", "Nail products"));
+        categoryItemList3.add(new CategoryItem(1, R.drawable.waxing, "Waxing", "Waxing products"));
 
         // category 4
         List<CategoryItem> categoryItemList4 = new ArrayList<>();
-        categoryItemList4.add(new CategoryItem(1, R.drawable.phone, "Phones"));
-        categoryItemList4.add(new CategoryItem(1, R.drawable.speaker, "Sound"));
-        categoryItemList4.add(new CategoryItem(1, R.drawable.laptops, "Laptops"));
-        categoryItemList4.add(new CategoryItem(1, R.drawable.tv, "Tvs"));
-        categoryItemList4.add(new CategoryItem(1, R.drawable.extension, "Accessories"));
+        categoryItemList4.add(new CategoryItem(1, R.drawable.phone, "Phones", "Phones"));
+        categoryItemList4.add(new CategoryItem(1, R.drawable.speaker, "Sound", "Sound systems"));
+        categoryItemList4.add(new CategoryItem(1, R.drawable.laptops, "Laptops", "Laptops"));
+        categoryItemList4.add(new CategoryItem(1, R.drawable.tv, "Tvs", "Television"));
+        categoryItemList4.add(new CategoryItem(1, R.drawable.extension, "Accessories", "Electrical accessories"));
 
 
         // category 5
         List<CategoryItem> categoryItemList5 = new ArrayList<>();
-        categoryItemList5.add(new CategoryItem(1, R.drawable.bikini, "Swim Wear"));
-        categoryItemList5.add(new CategoryItem(1, R.drawable.equip, "Gym Equipment"));
-        categoryItemList5.add(new CategoryItem(1, R.drawable.balls, "Balls"));
-        categoryItemList5.add(new CategoryItem(1, R.drawable.gymwear, "Sports Clothes"));
-        categoryItemList5.add(new CategoryItem(1, R.drawable.sportshoes, "Sports Shoes"));
+        categoryItemList5.add(new CategoryItem(1, R.drawable.bikini, "Swim Wear", "Swimming costumes"));
+        categoryItemList5.add(new CategoryItem(1, R.drawable.equip, "Gym Equipment", "Gym Equipment"));
+        categoryItemList5.add(new CategoryItem(1, R.drawable.balls, "Balls", "Sports balls"));
+        categoryItemList5.add(new CategoryItem(1, R.drawable.gymwear, "Sports Clothes", "Gym clothes"));
+        categoryItemList5.add(new CategoryItem(1, R.drawable.sportshoes, "Sports Shoes", "Sports Shoes"));
 
         List<AllCategory> allCategoryList = new ArrayList<>();
         allCategoryList.add(new AllCategory("Home", categoryItemList));

@@ -3,6 +3,7 @@ package com.uchumi.shopify.ui.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,6 +49,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         View v= inflater.inflate(R.layout.fragment_home, container, false);
         searchView=v.findViewById(R.id.search_bar);
         homeRecyclerview= v.findViewById(R.id.filterProducts);
+
         searchView.setOnQueryTextListener(this);
 
         FloatingActionButton mPrice=(FloatingActionButton) v.findViewById(R.id.filterByPrice);
@@ -55,9 +57,8 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         FloatingActionButton mShipping=(FloatingActionButton) v.findViewById(R.id.filterByShipping);
         FloatingActionButton mReviews=(FloatingActionButton) v.findViewById(R.id.filterByReviews);
 
-
         // Sort by Price
-      mPrice.setOnClickListener(new View.OnClickListener() {
+        mPrice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Collections.sort(offerList, Offer.sortPrice);
@@ -75,7 +76,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         });
 
         //Sort by Reviews
-        mReviews.setOnClickListener(new View.OnClickListener() {
+       mReviews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Collections.sort(offerList, Offer.sortReviews);
