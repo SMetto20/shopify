@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +23,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.skyfishjy.library.RippleBackground;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.adapters.ProductsAdapter;
 import com.uchumi.shopify.models.Offer;
 import com.uchumi.shopify.models.OffersResponse;
 import com.uchumi.shopify.network.ApiClient;
 import com.uchumi.shopify.network.ApiInterface;
+import com.uchumi.shopify.ui.MainActivity;
+import com.uchumi.shopify.ui.SplashScreenActivity;
 
 import java.util.Collections;
 import java.util.List;
@@ -45,6 +49,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
     SearchView searchView;
     TextView searchText;
     ImageView searchIcon;
+    RippleBackground mRippleBg;
 
     private RecyclerView homeRecyclerview;
     @Nullable
@@ -55,6 +60,9 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         homeRecyclerview= v.findViewById(R.id.filterProducts);
         searchText = v.findViewById(R.id.search_text);
         searchIcon = v.findViewById(R.id.search_icon);
+        mRippleBg = v.findViewById(R.id.content1);
+
+        mRippleBg.startRippleAnimation();
 
         searchView.setOnQueryTextListener(this);
 
@@ -118,6 +126,8 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
 
                 searchIcon.setVisibility(View.GONE);
                 searchText.setVisibility(View.GONE);
+                mRippleBg.setVisibility(View.GONE);
+
 
                 if (response.isSuccessful()) {
                     offerList = response.body().getOffers().getOffers();
