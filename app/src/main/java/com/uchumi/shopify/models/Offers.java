@@ -8,8 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 import org.parceler.Parcel;
 
-@Parcel
+
 @Generated("jsonschema2pojo")
+@Parcel
 public class Offers {
 
     @SerializedName("offers_count")
