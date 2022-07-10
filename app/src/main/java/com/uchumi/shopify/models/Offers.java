@@ -20,6 +20,7 @@ public class Offers {
     @Expose
     private List<Offer> offers = null;
 
+
     /**
      * No args constructor for use in serialization
      * 
@@ -53,5 +54,4 @@ public class Offers {
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
     }
-
 }

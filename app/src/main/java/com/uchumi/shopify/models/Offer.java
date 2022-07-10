@@ -83,6 +83,11 @@ public class Offer {
         this.reviewCount = reviewCount;
     }
 
+    public Offer(String name, String seller) {
+        this.name = name;
+        this.seller = seller;
+    }
+
     public String getName() {
         return name;
     }

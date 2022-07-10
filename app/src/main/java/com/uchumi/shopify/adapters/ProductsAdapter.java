@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.os.AsyncTask;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,15 +17,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import com.uchumi.shopify.Constants;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.models.Offer;
+
 import com.uchumi.shopify.ui.fragments.SavedItemsFragment;
 import com.uchumi.shopify.ui.ProductDetailsActivity;
-
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -62,7 +65,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         holder.mTerm.setText(offerList.get(position).getName());
         holder.mSeller.setText(offerList.get(position).getSeller());
-        holder.mPrice.setText((int) offerList.get(position).getPrice() + " $");
+        holder.mRating.setText(offerList.get(position).getReviewRating() + "/5");
+        holder.mShipping.setText("Shipping $" + (int) offerList.get(position).getShipping());
+        holder.mPrice.setText("$" + (int) offerList.get(position).getPrice());
         getImages(position);
         if (imageUrl == "") {
             String url = "https://www.trendsetter.com/pub/media/catalog/product/placeholder/default/no_image_placeholder.jpg";
@@ -74,13 +79,20 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         holder.mLikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                assert user != null;
+                String uid = user.getUid();
+                DatabaseReference mDatabase = FirebaseDatabase
+                        .getInstance()
+                        .getReference(Constants.FIREBASE_CHILD_PRODUCTS)
+                        .child(uid);
+
+                String pushId = mDatabase.push().getKey();
+                offerList.get(position).setPushId(pushId);
                 mDatabase.push().setValue(offerList.get(position));
                 Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     @Override
@@ -109,12 +121,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
 
+
+   TextView mTerm, mPrice, mSeller, mShipping, mRating;
+
    ImageView imageView, mLikeButton;
-        @BindView(R.id.itemTitle) TextView mTerm;
-        @BindView(R.id.itemPrice) TextView mPrice;
-        @BindView(R.id.shopName) TextView mSeller;
-
-
 
         private Context mContext;
 
@@ -122,6 +132,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+
+            mTerm=itemView.findViewById(R.id.itemTitle);
+            mPrice=itemView.findViewById(R.id.itemPrice);
+            mSeller=itemView.findViewById(R.id.shopName);
+            mShipping = itemView.findViewById(R.id.shipping);
+            mRating = itemView.findViewById(R.id.shopRatings);
 
             imageView=itemView.findViewById(R.id.itemImageView);
             mLikeButton = itemView.findViewById(R.id.favoriteItems);
