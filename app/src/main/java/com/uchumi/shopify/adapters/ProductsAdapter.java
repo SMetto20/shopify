@@ -44,7 +44,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     @NonNull
     @Override
     public ProductsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.activity_best_selling, null, false);
+        View view= LayoutInflater.from(context).inflate(R.layout.activity_best_selling, parent, false);
         return new ViewHolder(view);
     }
 
@@ -54,6 +54,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         holder.mTerm.setText(offerList.get(position).getName());
         holder.mSeller.setText(offerList.get(position).getSeller());
+        holder.mRating.setText(offerList.get(position).getReviewRating() + "/5");
+        holder.mShipping.setText("Shipping $" + (int) offerList.get(position).getShipping());
         holder.mPrice.setText("$" + (int) offerList.get(position).getPrice());
         getImages(position);
         if (imageUrl == "") {
@@ -107,7 +109,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-   TextView mTerm, mPrice, mSeller;
+   TextView mTerm, mPrice, mSeller, mShipping, mRating;
    ImageView imageView, mLikeButton;
 
         private Context mContext;
@@ -118,6 +120,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             mTerm=itemView.findViewById(R.id.itemTitle);
             mPrice=itemView.findViewById(R.id.itemPrice);
             mSeller=itemView.findViewById(R.id.shopName);
+            mShipping = itemView.findViewById(R.id.shipping);
+            mRating = itemView.findViewById(R.id.shopRatings);
             imageView=itemView.findViewById(R.id.itemImageView);
             mLikeButton = itemView.findViewById(R.id.favoriteItems);
 

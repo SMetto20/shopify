@@ -4,13 +4,13 @@ public class CategoryItem {
     Integer itemId;
     Integer imageUrl;
     String name;
-    String apiName;
+    String apiSearchName;
 
-    public CategoryItem(Integer itemId, Integer imageUrl, String name, String apiName) {
+    public CategoryItem(Integer itemId, Integer imageUrl, String name, String apiSearchName) {
         this.itemId = itemId;
         this.imageUrl = imageUrl;
         this.name = name;
-        this.apiName = apiName;
+        this.apiSearchName = apiSearchName;
     }
 
     public Integer getItemId() {
@@ -37,7 +37,7 @@ public class CategoryItem {
         this.name = name;
     }
 
-    public String getApiName() {return apiName;}
+    public String getApiName() {return apiSearchName;}
 
-    public void setApiName(String apiName) {this.apiName = apiName;}
+    public void setApiName(String apiName) {this.apiSearchName = apiName;}
 }

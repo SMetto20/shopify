@@ -21,8 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        app:itemIconSize="30dp"
         app:itemIconTint="@color/darkgreen"
-        app:itemTextColor="@color/darkgreen"
+        app:itemTextColor="@color/colorPrimaryDark"
         app:menu="@menu/bottom_navigation_bar" />
 
 </RelativeLayout>

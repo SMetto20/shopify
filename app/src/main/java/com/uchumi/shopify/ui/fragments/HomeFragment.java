@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -41,6 +43,8 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
     ProductsAdapter productsAdapter;
     String country="us";
     SearchView searchView;
+    TextView searchText;
+    ImageView searchIcon;
 
     private RecyclerView homeRecyclerview;
     @Nullable
@@ -49,6 +53,8 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         View v= inflater.inflate(R.layout.fragment_home, container, false);
         searchView=v.findViewById(R.id.search_bar);
         homeRecyclerview= v.findViewById(R.id.filterProducts);
+        searchText = v.findViewById(R.id.search_text);
+        searchIcon = v.findViewById(R.id.search_icon);
 
         searchView.setOnQueryTextListener(this);
 
@@ -109,6 +115,10 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         call.enqueue(new Callback<OffersResponse>() {
             @Override
             public void onResponse(Call<OffersResponse> call, Response<OffersResponse> response) {
+
+                searchIcon.setVisibility(View.GONE);
+                searchText.setVisibility(View.GONE);
+
                 if (response.isSuccessful()) {
                     offerList = response.body().getOffers().getOffers();
                     productsAdapter = new ProductsAdapter(getActivity(), offerList);
