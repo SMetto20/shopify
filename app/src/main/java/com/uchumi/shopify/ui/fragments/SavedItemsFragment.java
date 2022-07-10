@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.uchumi.shopify.Constants;
@@ -21,25 +23,39 @@ import com.uchumi.shopify.R;
 import com.uchumi.shopify.adapters.FirebaseProductsAdapter;
 import com.uchumi.shopify.models.Offer;
 
-import org.parceler.Parcels;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class SavedItemsFragment extends Fragment {
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     DatabaseReference mDatabase;
     FirebaseRecyclerAdapter<Offer, FirebaseProductsAdapter> mFirebaseAdapter;
-    @BindView(R.id.favouritesRecyclerView) RecyclerView mRecyclerView;
+    @BindView(R.id.favouritesRecyclerView)
+    RecyclerView mRecyclerView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_saved_items, container, false);
         ButterKnife.bind(this, view);
-        setUpFirebaseAdapter();
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS).child(uid);
+        setUpFirebaseAdapter();
+        mRecyclerView.setVisibility(View.VISIBLE);
+        mAuth = FirebaseAuth.getInstance();
     }
 
     private void setUpFirebaseAdapter() {
@@ -69,12 +85,20 @@ public class SavedItemsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        mFirebaseAdapter.startListening();
+        if (mAuthListener != null) {
+            mAuth.addAuthStateListener(mAuthListener);
+        }
+        if (mFirebaseAdapter != null) {
+            mFirebaseAdapter.startListening();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
         if (mFirebaseAdapter != null) {
             mFirebaseAdapter.stopListening();
         }

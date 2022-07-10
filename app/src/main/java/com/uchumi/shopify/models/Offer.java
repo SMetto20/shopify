@@ -27,7 +27,7 @@ public class Offer {
     private String currency;
     @SerializedName("shipping")
     @Expose
-    private Float shipping;
+    private float shipping;
     @SerializedName("condition")
     @Expose
     private String condition;
@@ -67,7 +67,7 @@ public class Offer {
      * @param reviewRating
      * @param url
      */
-    public Offer(String name, String url, float price, String currency, Float shipping, String condition, String seller, String sellerUrl, String reviewRating, String reviewCount) {
+    public Offer(String name, String url, float price, String currency, float shipping, String condition, String seller, String sellerUrl, String reviewRating, String reviewCount) {
         super();
         this.name = name;
         this.url = url;
@@ -79,6 +79,11 @@ public class Offer {
         this.sellerUrl = sellerUrl;
         this.reviewRating = reviewRating;
         this.reviewCount = reviewCount;
+    }
+
+    public Offer(String name, String seller) {
+        this.name = name;
+        this.seller = seller;
     }
 
     public String getName() {
@@ -113,11 +118,11 @@ public class Offer {
         this.currency = currency;
     }
 
-    public Float getShipping() {
+    public float getShipping() {
         return shipping;
     }
 
-    public void setShipping(Float shipping) {
+    public void setShipping(float shipping) {
         this.shipping = shipping;
     }
 
