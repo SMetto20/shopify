@@ -4,45 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorTextIcons"
+    android:background="@color/lightgrey"
     tools:context=".ui.ProductDetailsActivity">
-
-
-    <ImageView
-        android:id="@+id/backPageArrow"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_baseline_arrow_back_24"
-        app:layout_constraintEnd_toStartOf="@+id/productNameDetailTextView"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/productNameDetailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
+        android:gravity="center_horizontal"
         android:text="PRODUCT NAME"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="35dp"
+        android:textSize="22dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.017" />
 
     <TextView
         android:id="@+id/sellerNameDetailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="seller"
         android:elevation="50dp"
+        android:text="seller"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="30dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -55,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:layout_margin="20dp"
-        android:backgroundTint="@color/colorTextIcons"
+        android:backgroundTint="@color/lightblue"
         app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,27 +56,12 @@
 
         <ImageView
             android:id="@+id/imageProductDetailsView"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:src="@drawable/ps5" />
 
     </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/descriptionDetailTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="@string/detail_text"
-        android:textColor="@color/colorPrimary"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3"
-        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:id="@+id/shippingTextView"
@@ -96,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionDetailTextView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
@@ -116,7 +92,7 @@
                 android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text="shipping price"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="15dp" />
         </LinearLayout>
 
@@ -151,7 +127,7 @@
                 android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text="product price"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="15dp" />
         </LinearLayout>
     </LinearLayout>
@@ -185,7 +161,7 @@
                 android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text="product reviews"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="15dp" />
         </LinearLayout>
     </LinearLayout>
@@ -219,7 +195,7 @@
                 android:layout_marginStart="15dp"
                 android:padding="10dp"
                 android:text="product rating"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="15dp" />
         </LinearLayout>
     </LinearLayout>
@@ -228,12 +204,12 @@
         android:id="@+id/viewSiteButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/poppins"
         android:text="Visit Site"
         android:textAllCaps="false"
-        android:backgroundTint="@color/colorPrimaryDark"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

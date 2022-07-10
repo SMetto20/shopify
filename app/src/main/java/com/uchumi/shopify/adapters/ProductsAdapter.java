@@ -132,13 +132,11 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
-
             mTerm=itemView.findViewById(R.id.itemTitle);
             mPrice=itemView.findViewById(R.id.itemPrice);
             mSeller=itemView.findViewById(R.id.shopName);
             mShipping = itemView.findViewById(R.id.shipping);
             mRating = itemView.findViewById(R.id.shopRatings);
-
             imageView=itemView.findViewById(R.id.itemImageView);
             mLikeButton = itemView.findViewById(R.id.favoriteItems);
 
