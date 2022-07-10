@@ -1,26 +1,32 @@
 package com.uchumi.shopify.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.AsyncTask;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
-
+import com.uchumi.shopify.Constants;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.models.Offer;
-
+import com.uchumi.shopify.ui.fragments.SavedItemsFragment;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.parceler.Parcels;
 
 import java.io.IOException;
 import java.util.List;
@@ -44,14 +50,29 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+    @SuppressLint("ResourceType")
     @Override
-    public void onBindViewHolder(@NonNull ProductsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductsAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.mTerm.setText(offerList.get(position).getName());
         holder.mSeller.setText(offerList.get(position).getSeller());
         holder.mPrice.setText((int) offerList.get(position).getPrice() + " $");
-        getImages();
-        Picasso.get().load(imageUrl).into(holder.imageView);
+        getImages(position);
+        if (imageUrl == "") {
+            String url = "https://www.trendsetter.com/pub/media/catalog/product/placeholder/default/no_image_placeholder.jpg";
+            Picasso.get().load(url).into(holder.imageView);
+        } else {
+            Picasso.get().load(imageUrl).into(holder.imageView);
+        }
+
+        holder.mLikeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS);
+                mDatabase.push().setValue(offerList.get(position));
+                Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
@@ -62,12 +83,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     }
 
 
-    public void getImages(){
+    public void getImages(int position) {
         Thread thread = new Thread() {
             @Override
             public void run() {
                 try {
-                    Document document = Jsoup.connect(offerList.get(5).getUrl()).get();
+                    Document document = Jsoup.connect(offerList.get(position).getUrl()).timeout(6000)   .get();
                     Elements elements = document.select("div.oR27Gd");
                     imageUrl = elements.select("img").attr("src");
                     Log.i("imageUrl", imageUrl);
@@ -82,7 +103,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
    TextView mTerm, mPrice, mSeller;
-   ImageView imageView;
+   ImageView imageView, mLikeButton;
 
         private Context mContext;
 
@@ -93,6 +114,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             mPrice=itemView.findViewById(R.id.itemPrice);
             mSeller=itemView.findViewById(R.id.shopName);
             imageView=itemView.findViewById(R.id.itemImageView);
+            mLikeButton = itemView.findViewById(R.id.favoriteItems);
 
         }
     }

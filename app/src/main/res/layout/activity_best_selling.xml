@@ -11,8 +11,10 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:background="@color/lightblue"
         app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,22 +31,26 @@
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ps5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
 
             <TextView
                 android:id="@+id/itemTitle"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="200dp"
                 android:text="item_name"
                 android:textColor="@color/darkgreen"
-                android:textSize="20sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.072"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemImageView" />
 
             <TextView
                 android:id="@+id/itemPrice"
@@ -52,6 +58,7 @@
                 android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:inputType="textMultiLine"
                 android:text="Price"
                 android:textColor="@color/darkgreen"
@@ -60,29 +67,68 @@
                 app:layout_constraintTop_toBottomOf="@+id/itemTitle" />
 
             <TextView
+                android:id="@+id/ShopRatings"
+                android:layout_width="65dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="8dp"
+                android:inputType="textMultiLine"
+                android:text="Ratings"
+                android:textColor="@color/darkgreen"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemTitle" />
+
+
+            <TextView
                 android:id="@+id/shopName"
                 android:layout_width="65dp"
                 android:layout_height="20dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:inputType="textMultiLine"
-                android:text="Seller Name"
+                android:text="Seller"
                 android:textColor="@color/darkgreen"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.02"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/itemPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/shipping"
+                app:layout_constraintVertical_bias="0.004" />
+
+            <TextView
+                android:id="@+id/shipping"
+                android:layout_width="65dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:inputType="textMultiLine"
+                android:text="shipping"
+                android:textColor="@color/darkgreen"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.047"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/itemPrice"
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/favoriteItems"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="256dp"
-                android:layout_marginEnd="272dp"
-                android:src="@drawable/ic_baseline_favorite_24"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/favorite_items"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                app:layout_constraintHorizontal_bias="0.137"
+                app:layout_constraintStart_toEndOf="@+id/shopName"
+                app:layout_constraintTop_toTopOf="@+id/shipping"
+                app:layout_constraintVertical_bias="0.073" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
