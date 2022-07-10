@@ -98,7 +98,11 @@
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
+<<<<<<< HEAD
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+=======
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+>>>>>>> 6051354b28f36e95b35e2dfcff84743cf8ec8354
       <module name="Shopify.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
