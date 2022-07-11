@@ -34,6 +34,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
         ButterKnife.bind(this);
+        getSupportActionBar().hide();
 
         offerList = Parcels.unwrap(getIntent().getParcelableExtra("shop"));
         int startingPosition = getIntent().getIntExtra("position", 0);
