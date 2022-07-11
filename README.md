@@ -49,5 +49,5 @@ System.out.prntln("hello world")
 4. Git clone
 5. Run the application on Android Studio.
 
-### License 
-1. MIT license
+### License
+Licensed under [MIT License](LICENSE)
