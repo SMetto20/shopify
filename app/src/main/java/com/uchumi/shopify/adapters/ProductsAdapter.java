@@ -26,6 +26,7 @@ import com.uchumi.shopify.Constants;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.models.Offer;
 
+import com.uchumi.shopify.ui.CreateAccountActivity;
 import com.uchumi.shopify.ui.fragments.SavedItemsFragment;
 import com.uchumi.shopify.ui.ProductDetailsActivity;
 
@@ -36,6 +37,7 @@ import org.parceler.Parcels;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,7 +71,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         holder.mShipping.setText("Shipping $" + (int) offerList.get(position).getShipping());
         holder.mPrice.setText("$" + (int) offerList.get(position).getPrice());
         getImages(position);
-        if (imageUrl == "") {
+        if (imageUrl == null || imageUrl.equals("")) {
             String url = "https://www.trendsetter.com/pub/media/catalog/product/placeholder/default/no_image_placeholder.jpg";
             Picasso.get().load(url).into(holder.imageView);
         } else {
@@ -89,7 +91,17 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
                 String pushId = mDatabase.push().getKey();
                 offerList.get(position).setPushId(pushId);
-                mDatabase.push().setValue(offerList.get(position));
+//                mDatabase.push().setValue(offerList.get(position));
+                Thread thread = new Thread() {
+                    @Override
+                    public void run() {
+                        String image = getImagesV2(position);
+                        offerList.get(position).setImage(image);
+                        mDatabase.push().setValue(offerList.get(position));
+
+                    }
+                };
+                thread.start();
                 Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show();
             }
         });
@@ -117,6 +129,20 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         };
         thread.start();
     }
+    public String getImagesV2(int position) {
+        String image = "";
+
+                try {
+                    Document document = Jsoup.connect(offerList.get(position).getUrl()).timeout(6000)   .get();
+                    Elements elements = document.select("div.oR27Gd");
+                    image = elements.select("img").attr("src");
+                    Log.i("imageUrl", image);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            return image;
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 

@@ -45,6 +45,9 @@ public class Offer {
     @SerializedName("review_count")
     @Expose
     private String reviewCount;
+    @SerializedName("image")
+    @Expose
+    private String image;
 
 //    push ID
     private String pushId;
@@ -168,6 +171,13 @@ public class Offer {
         this.reviewCount = reviewCount;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 //methods to retrieve or assign the relevant ID to an object.
 
     public String getPushId() {

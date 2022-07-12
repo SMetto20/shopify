@@ -1,6 +1,7 @@
 package com.uchumi.shopify.ui.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.uchumi.shopify.Constants;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.adapters.FirebaseProductsAdapter;
 import com.uchumi.shopify.models.Offer;
+import com.uchumi.shopify.ui.CreateAccountActivity;
+import com.uchumi.shopify.ui.CreateAccountActivity_ViewBinding;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,16 +53,21 @@ public class SavedItemsFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user == null){
+            Intent intent = new Intent(getActivity(), CreateAccountActivity.class);
+            startActivity(intent);
+        }
         String uid = user.getUid();
 
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS).child(uid);
-        setUpFirebaseAdapter();
+        setUpFirebaseAdapter(mDatabase);
         mRecyclerView.setVisibility(View.VISIBLE);
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void setUpFirebaseAdapter() {
-        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS);
+    private void setUpFirebaseAdapter( DatabaseReference mDatabase) {
+
+//        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS);
 
         FirebaseRecyclerOptions<Offer> options = new FirebaseRecyclerOptions.Builder<Offer>()
                 .setQuery(mDatabase, Offer.class)
