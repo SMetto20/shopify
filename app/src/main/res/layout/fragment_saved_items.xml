@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorTextIcons"
+    android:background="@drawable/recycler_bg"
     tools:context=".ui.fragments.SavedItemsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,15 +15,13 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:backgroundTint="@color/colorPrimaryText"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.01">
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,6 +34,19 @@
                 android:textSize="40dp" />
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:id="@+id/textViewHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Saved Items"
+            android:textSize="40dp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorPrimaryLight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favouritesRecyclerView"
             android:layout_width="match_parent"
@@ -44,7 +55,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:visibility="gone"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
