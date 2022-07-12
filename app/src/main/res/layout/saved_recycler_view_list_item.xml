@@ -25,7 +25,7 @@
             android:id="@+id/productImage"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/ecommerce_removebg_preview1" />
+            android:src="@drawable/ecommerce_removebg_preview" />
 
     </androidx.cardview.widget.CardView>
 
