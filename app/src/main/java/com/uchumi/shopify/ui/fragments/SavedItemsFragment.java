@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +36,7 @@ public class SavedItemsFragment extends Fragment {
     FirebaseRecyclerAdapter<Offer, FirebaseProductsAdapter> mFirebaseAdapter;
     @BindView(R.id.favouritesRecyclerView)
     RecyclerView mRecyclerView;
+    @BindView(R.id.textViewHolder) TextView mTextViewHolder;
 
     @Nullable
     @Override
