@@ -151,7 +151,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Log.d(TAG, Objects.requireNonNull(user.getDisplayName()));
-                    Toast.makeText(CreateAccountActivity.this, "The display name has been set", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateAccountActivity.this, "Account successfully created!", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -160,16 +160,17 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         if (v == mLoginTextView) {
-            Intent intent = new Intent(CreateAccountActivity.this, LoginFragment.class);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
+            /*Intent intent = new Intent(CreateAccountActivity.this, LoginFragment.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-            finish();
+            finish();*/
         }
         if (v == mSignUpButton) {
             createNewUser();
         }
         if(v == mBackHomeButton){
-            Intent intent = new Intent(CreateAccountActivity.this, LoginFragment.class);
+            Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }

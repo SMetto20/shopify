@@ -25,7 +25,6 @@ import com.uchumi.shopify.R;
 import com.uchumi.shopify.adapters.FirebaseProductsAdapter;
 import com.uchumi.shopify.models.Offer;
 import com.uchumi.shopify.ui.CreateAccountActivity;
-import com.uchumi.shopify.ui.CreateAccountActivity_ViewBinding;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

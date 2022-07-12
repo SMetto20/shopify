@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/layout/fragment_saved_items.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/home_recycler_item.xml" value="0.30144927536231886" />
+        <entry key="app/src/main/res/layout/saved_recycler_view_list_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/menu/bottom_navigation_bar.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/menu/menu_logout.xml" value="0.3098958333333333" />
       </map>

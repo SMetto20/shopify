@@ -3,6 +3,7 @@ package com.uchumi.shopify.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.os.AsyncTask;
 
@@ -82,27 +83,30 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                assert user != null;
-                String uid = user.getUid();
-                DatabaseReference mDatabase = FirebaseDatabase
-                        .getInstance()
-                        .getReference(Constants.FIREBASE_CHILD_PRODUCTS)
-                        .child(uid);
+                if(user == null){
+                    Toast.makeText(context, "Login to view favourites", Toast.LENGTH_LONG).show();
+                } else {
+                    String uid = user.getUid();
+                    DatabaseReference mDatabase = FirebaseDatabase
+                            .getInstance()
+                            .getReference(Constants.FIREBASE_CHILD_PRODUCTS)
+                            .child(uid);
 
-                String pushId = mDatabase.push().getKey();
-                offerList.get(position).setPushId(pushId);
+                    String pushId = mDatabase.push().getKey();
+                    offerList.get(position).setPushId(pushId);
 //                mDatabase.push().setValue(offerList.get(position));
-                Thread thread = new Thread() {
-                    @Override
-                    public void run() {
-                        String image = getImagesV2(position);
-                        offerList.get(position).setImage(image);
-                        mDatabase.push().setValue(offerList.get(position));
+                    Thread thread = new Thread() {
+                        @Override
+                        public void run() {
+                            String image = getImagesV2(position);
+                            offerList.get(position).setImage(image);
+                            mDatabase.push().setValue(offerList.get(position));
 
-                    }
-                };
-                thread.start();
-                Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show();
+                        }
+                    };
+                    thread.start();
+                    Toast.makeText(context, "Added to favorites", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

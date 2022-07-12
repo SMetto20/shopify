@@ -4,15 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.uchumi.shopify.ui.fragments.HomeFragment;
 import com.uchumi.shopify.ui.fragments.LoginFragment;
 import com.uchumi.shopify.R;
@@ -20,6 +23,7 @@ import com.uchumi.shopify.ui.fragments.SavedItemsFragment;
 import com.uchumi.shopify.ui.fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +54,15 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new LoginFragment();
                             break;
                         case R.id.nav_favorites:
-                            selectedFragment = new SavedItemsFragment();
-                            break;
-                        case R.id.nav_search:
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if(user == null){
+                                selectedFragment = new LoginFragment();
+                                break;
+                            } else {
+                                selectedFragment = new SavedItemsFragment();
+                                break;
+                            }
+                            case R.id.nav_search:
                             selectedFragment = new SearchFragment();
                             break;
                     }
