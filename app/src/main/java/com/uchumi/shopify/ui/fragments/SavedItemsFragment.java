@@ -1,6 +1,8 @@
 package com.uchumi.shopify.ui.fragments;
 
 
+import static android.view.View.GONE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -59,17 +61,13 @@ public class SavedItemsFragment extends Fragment {
             startActivity(intent);
         }
         String uid = user.getUid();
-
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS).child(uid);
-        setUpFirebaseAdapter(mDatabase);
+        setUpFirebaseAdapter(mDatabase, uid);
         mRecyclerView.setVisibility(View.VISIBLE);
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void setUpFirebaseAdapter( DatabaseReference mDatabase) {
-
-//        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS);
-
+    private void setUpFirebaseAdapter( DatabaseReference mDatabase, String userId) {
         FirebaseRecyclerOptions<Offer> options = new FirebaseRecyclerOptions.Builder<Offer>()
                 .setQuery(mDatabase, Offer.class)
                 .build();
@@ -77,13 +75,14 @@ public class SavedItemsFragment extends Fragment {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Offer, FirebaseProductsAdapter>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FirebaseProductsAdapter holder, int position, @NonNull Offer model) {
-                holder.bindProduct(model);
+                holder.bindProduct(model, userId);
             }
 
             @NonNull
             @Override
             public FirebaseProductsAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.saved_recycler_view_list_item, parent, false);
+                mTextViewHolder.setVisibility(GONE);
                 return new FirebaseProductsAdapter(view);
             }
         };
