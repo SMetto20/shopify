@@ -60,12 +60,12 @@ public class SavedItemsFragment extends Fragment {
         String uid = user.getUid();
 
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS).child(uid);
-        setUpFirebaseAdapter(mDatabase);
+        setUpFirebaseAdapter(mDatabase, uid);
         mRecyclerView.setVisibility(View.VISIBLE);
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void setUpFirebaseAdapter( DatabaseReference mDatabase) {
+    private void setUpFirebaseAdapter( DatabaseReference mDatabase, String userId) {
 
 //        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS);
 
@@ -76,7 +76,7 @@ public class SavedItemsFragment extends Fragment {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Offer, FirebaseProductsAdapter>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FirebaseProductsAdapter holder, int position, @NonNull Offer model) {
-                holder.bindProduct(model);
+                holder.bindProduct(model, userId);
             }
 
             @NonNull
