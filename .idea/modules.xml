@@ -7,6 +7,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shopify.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shopify.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shopify.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shopify.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shopify.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shopify.app.unitTest.iml" />
+<<<<<<< HEAD
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.Shopify.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.Shopify.app.main.iml" />
+>>>>>>> 3337b5a (ui changes)
     </modules>
   </component>
 </project>
