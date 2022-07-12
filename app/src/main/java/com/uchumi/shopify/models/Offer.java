@@ -201,7 +201,7 @@ public class Offer {
     public static Comparator<Offer> sortRatings =new Comparator<Offer>() {
         @Override
         public int compare(Offer o1, Offer o2) {
-            return o1.getReviewRating().compareTo(o2.getReviewRating());
+            return o2.getReviewRating().compareTo(o1.getReviewRating());
         }
     };
 
@@ -217,7 +217,7 @@ public class Offer {
     public static Comparator<Offer> sortReviews =new Comparator<Offer>() {
         @Override
         public int compare(Offer o1, Offer o2) {
-            return o1.getReviewCount().compareTo(o2.getReviewCount());
+            return o2.getReviewCount().compareTo(o1.getReviewCount());
         }
     };
 
