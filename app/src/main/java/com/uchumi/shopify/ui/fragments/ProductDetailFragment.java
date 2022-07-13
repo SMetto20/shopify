@@ -1,5 +1,7 @@
 package com.uchumi.shopify.ui.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -70,7 +72,21 @@ public class ProductDetailFragment extends Fragment {
         mProductReviewTextView.setText(mShop.getReviewCount() + " Reviews");
         mProductRatingsTextView.setText(mShop.getReviewRating());
 
-        Picasso.get().load(mShop.getImage()).into(mProductDetailsImage);
+        if (mShop.getImage() == null || mShop.getImage().equals("")) {
+            String url = "https://www.trendsetter.com/pub/media/catalog/product/placeholder/default/no_image_placeholder.jpg";
+            Picasso.get().load(url).into(mProductDetailsImage);
+        } else {
+            Picasso.get().load(mShop.getImage()).into(mProductDetailsImage);
+        }
+
+        mViewSiteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(mShop.getSellerUrl()));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
