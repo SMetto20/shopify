@@ -36,7 +36,7 @@ System.out.prntln("hello world")
 4. Development
 5. Testing
 6. Deploying
-7. Maintainance
+7. Maintenance
 
 ### Known Bugs
 1. Slight lag when displaying images

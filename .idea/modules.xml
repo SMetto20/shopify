@@ -7,6 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shopify.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shopify.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shopify.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shopify.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Shopify.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Shopify.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/shopify.Shopify.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/shopify.Shopify.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/shopify.Shopify.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/shopify.Shopify.app.main.iml" />
     </modules>
   </component>
 </project>
