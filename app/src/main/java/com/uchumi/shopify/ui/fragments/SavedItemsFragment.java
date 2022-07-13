@@ -1,11 +1,14 @@
 package com.uchumi.shopify.ui.fragments;
 
 
+import static android.view.View.GONE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +27,6 @@ import com.uchumi.shopify.R;
 import com.uchumi.shopify.adapters.FirebaseProductsAdapter;
 import com.uchumi.shopify.models.Offer;
 import com.uchumi.shopify.ui.CreateAccountActivity;
-import com.uchumi.shopify.ui.CreateAccountActivity_ViewBinding;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +40,7 @@ public class SavedItemsFragment extends Fragment {
     FirebaseRecyclerAdapter<Offer, FirebaseProductsAdapter> mFirebaseAdapter;
     @BindView(R.id.favouritesRecyclerView)
     RecyclerView mRecyclerView;
+    @BindView(R.id.textViewHolder) TextView mTextViewHolder;
 
     @Nullable
     @Override
@@ -58,7 +61,6 @@ public class SavedItemsFragment extends Fragment {
             startActivity(intent);
         }
         String uid = user.getUid();
-
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS).child(uid);
         setUpFirebaseAdapter(mDatabase, uid);
         mRecyclerView.setVisibility(View.VISIBLE);
@@ -66,9 +68,6 @@ public class SavedItemsFragment extends Fragment {
     }
 
     private void setUpFirebaseAdapter( DatabaseReference mDatabase, String userId) {
-
-//        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS);
-
         FirebaseRecyclerOptions<Offer> options = new FirebaseRecyclerOptions.Builder<Offer>()
                 .setQuery(mDatabase, Offer.class)
                 .build();
@@ -83,6 +82,7 @@ public class SavedItemsFragment extends Fragment {
             @Override
             public FirebaseProductsAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.saved_recycler_view_list_item, parent, false);
+                mTextViewHolder.setVisibility(GONE);
                 return new FirebaseProductsAdapter(view);
             }
         };
