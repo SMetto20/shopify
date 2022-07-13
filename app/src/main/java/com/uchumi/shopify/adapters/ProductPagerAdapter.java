@@ -12,10 +12,13 @@ import java.util.List;
 
 public class ProductPagerAdapter extends FragmentPagerAdapter {
     private List<Offer> mShops;
+    String imageUrl;
 
     public ProductPagerAdapter(@NonNull FragmentManager fm, int behavior, List<Offer> shops) {
         super(fm, behavior);
         mShops = shops;
+
+
     }
 
 

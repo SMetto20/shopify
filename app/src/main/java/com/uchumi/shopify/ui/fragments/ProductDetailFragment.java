@@ -1,5 +1,7 @@
 package com.uchumi.shopify.ui.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -22,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class ProductDetailFragment extends Fragment {
+public class ProductDetailFragment extends Fragment implements View.OnClickListener{
 
     @BindView(R.id.shippingPriceTextView) TextView mShippingPriceTextView;
     @BindView(R.id.productPriceTextView) TextView mProductPriceTextView;
@@ -70,6 +72,16 @@ public class ProductDetailFragment extends Fragment {
         mProductReviewTextView.setText(mShop.getReviewCount() + " Reviews");
         mProductRatingsTextView.setText(mShop.getReviewRating());
 
+        mViewSiteButton.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == mViewSiteButton) {
+            Intent sellerIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mShop.getSellerUrl()));
+            startActivity(sellerIntent);
+        }
     }
 }
