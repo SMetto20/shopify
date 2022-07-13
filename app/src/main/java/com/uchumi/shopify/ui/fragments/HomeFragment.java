@@ -3,13 +3,17 @@ package com.uchumi.shopify.ui.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,12 +23,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.skyfishjy.library.RippleBackground;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.adapters.ProductsAdapter;
 import com.uchumi.shopify.models.Offer;
 import com.uchumi.shopify.models.OffersResponse;
 import com.uchumi.shopify.network.ApiClient;
 import com.uchumi.shopify.network.ApiInterface;
+import com.uchumi.shopify.ui.MainActivity;
+import com.uchumi.shopify.ui.SplashScreenActivity;
 
 import java.util.Collections;
 import java.util.List;
@@ -40,6 +47,9 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
     ProductsAdapter productsAdapter;
     String country="us";
     SearchView searchView;
+    TextView searchText;
+    ImageView searchIcon;
+    RippleBackground mRippleBg;
 
     private RecyclerView homeRecyclerview;
     @Nullable
@@ -48,6 +58,12 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         View v= inflater.inflate(R.layout.fragment_home, container, false);
         searchView=v.findViewById(R.id.search_bar);
         homeRecyclerview= v.findViewById(R.id.filterProducts);
+        searchText = v.findViewById(R.id.search_text);
+        searchIcon = v.findViewById(R.id.search_icon);
+        mRippleBg = v.findViewById(R.id.content1);
+
+        mRippleBg.startRippleAnimation();
+
         searchView.setOnQueryTextListener(this);
 
         FloatingActionButton mPrice=(FloatingActionButton) v.findViewById(R.id.filterByPrice);
@@ -55,43 +71,42 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         FloatingActionButton mShipping=(FloatingActionButton) v.findViewById(R.id.filterByShipping);
         FloatingActionButton mReviews=(FloatingActionButton) v.findViewById(R.id.filterByReviews);
 
-
         // Sort by Price
-      /*  mPrice.setOnClickListener(new View.OnClickListener() {
+        mPrice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Collections.sort(offerList, Offer.sortPrice);
                 productsAdapter.notifyDataSetChanged();
             }
-        });*/
+        });
 
         //sort by Ratings
-       /* mRatings.setOnClickListener(new View.OnClickListener() {
+       mRatings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Collections.sort(offerList, Offer.sortRatings);
                 productsAdapter.notifyDataSetChanged();
             }
-        });*/
+        });
 
         //Sort by Reviews
-        /*mReviews.setOnClickListener(new View.OnClickListener() {
+       mReviews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Collections.sort(offerList, Offer.sortReviews);
                 productsAdapter.notifyDataSetChanged();
             }
-        });*/
+        });
 
         //Sort by Shipping
-       /* mShipping.setOnClickListener(new View.OnClickListener() {
+       mShipping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Collections.sort(offerList, Offer.sortShipping);
                 productsAdapter.notifyDataSetChanged();
 
             }
-        });*/
+        });
         return v;
 
 
@@ -108,6 +123,12 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
         call.enqueue(new Callback<OffersResponse>() {
             @Override
             public void onResponse(Call<OffersResponse> call, Response<OffersResponse> response) {
+
+                searchIcon.setVisibility(View.GONE);
+                searchText.setVisibility(View.GONE);
+                mRippleBg.setVisibility(View.GONE);
+
+
                 if (response.isSuccessful()) {
                     offerList = response.body().getOffers().getOffers();
                     productsAdapter = new ProductsAdapter(getActivity(), offerList);
@@ -125,7 +146,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
                 Log.e("API ERROR: ",t.getMessage());
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-                builder.setMessage("You have no internet connection!")
+                builder.setMessage("Unable to retrieve item. Please try again later.")
                         .setCancelable(false)
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
@@ -135,7 +156,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
                         });
                 AlertDialog alert = builder.create();
 
-                alert.setTitle(" Connection problem");
+                alert.setTitle("Connection problem");
                 alert.show();
 
             }

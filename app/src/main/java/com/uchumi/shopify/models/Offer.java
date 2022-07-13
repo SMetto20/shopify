@@ -5,10 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import org.parceler.Parcel;
 
+
+import java.util.Comparator;
+
 import javax.annotation.Generated;
 
-@Parcel
+
 @Generated("jsonschema2pojo")
+@Parcel
 public class Offer {
 
     @SerializedName("name")
@@ -25,7 +29,7 @@ public class Offer {
     private String currency;
     @SerializedName("shipping")
     @Expose
-    private Float shipping;
+    private float shipping;
     @SerializedName("condition")
     @Expose
     private String condition;
@@ -41,6 +45,9 @@ public class Offer {
     @SerializedName("review_count")
     @Expose
     private String reviewCount;
+    @SerializedName("image")
+    @Expose
+    private String image;
 
 //    push ID
     private String pushId;
@@ -65,7 +72,7 @@ public class Offer {
      * @param reviewRating
      * @param url
      */
-    public Offer(String name, String url, float price, String currency, Float shipping, String condition, String seller, String sellerUrl, String reviewRating, String reviewCount) {
+    public Offer(String name, String url, float price, String currency, float shipping, String condition, String seller, String sellerUrl, String reviewRating, String reviewCount) {
         super();
         this.name = name;
         this.url = url;
@@ -77,6 +84,11 @@ public class Offer {
         this.sellerUrl = sellerUrl;
         this.reviewRating = reviewRating;
         this.reviewCount = reviewCount;
+    }
+
+    public Offer(String name, String seller) {
+        this.name = name;
+        this.seller = seller;
     }
 
     public String getName() {
@@ -111,11 +123,11 @@ public class Offer {
         this.currency = currency;
     }
 
-    public Float getShipping() {
+    public float getShipping() {
         return shipping;
     }
 
-    public void setShipping(Float shipping) {
+    public void setShipping(float shipping) {
         this.shipping = shipping;
     }
 
@@ -159,6 +171,13 @@ public class Offer {
         this.reviewCount = reviewCount;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 //methods to retrieve or assign the relevant ID to an object.
 
     public String getPushId() {
@@ -168,5 +187,38 @@ public class Offer {
     public void setPushId(String pushId) {
         this.pushId = pushId;
     }
+
+// Sort Price method
+
+    public static Comparator<Offer> sortPrice =new Comparator<Offer>() {
+        @Override
+        public int compare(Offer o1, Offer o2) {
+            return (int) (o1.getPrice()-o2.getPrice());
+        }
+    };
+
+    //sort Ratings method
+    public static Comparator<Offer> sortRatings =new Comparator<Offer>() {
+        @Override
+        public int compare(Offer o1, Offer o2) {
+            return o2.getReviewRating().compareTo(o1.getReviewRating());
+        }
+    };
+
+    //Sort Shipping method
+    public static Comparator<Offer> sortShipping=new Comparator<Offer>() {
+        @Override
+        public int compare(Offer o1, Offer o2) {
+            return (int) (o1.getShipping()-o2.getShipping());
+        }
+    };
+
+    //Sort Reviews method
+    public static Comparator<Offer> sortReviews =new Comparator<Offer>() {
+        @Override
+        public int compare(Offer o1, Offer o2) {
+            return o2.getReviewCount().compareTo(o1.getReviewCount());
+        }
+    };
 
 }

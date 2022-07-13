@@ -8,8 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 import org.parceler.Parcel;
 
-@Parcel
+
 @Generated("jsonschema2pojo")
+@Parcel
 public class Offers {
 
     @SerializedName("offers_count")
@@ -18,6 +19,7 @@ public class Offers {
     @SerializedName("offers")
     @Expose
     private List<Offer> offers = null;
+
 
     /**
      * No args constructor for use in serialization
@@ -52,5 +54,4 @@ public class Offers {
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
     }
-
 }

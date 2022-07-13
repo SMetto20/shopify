@@ -4,19 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorTextIcons"
     tools:context=".ui.CreateAccountActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:src="@drawable/ecommerce_removebg_preview1"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/backHomeButton1"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:backgroundTint="@color/colorAccent"
+        android:drawableEnd="@drawable/ic_baseline_arrow_back1_ios_24"
+        android:padding="0dp"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintVertical_bias="0.02" />
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:paddingTop="20dp"
+        android:text="SHOPIFY"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.065" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -25,43 +46,27 @@
         android:background="@drawable/view_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".70"
+        app:layout_constraintHeight_percent=".80"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
         <TextView
-            android:id="@+id/textViewTitle"
+            android:id="@+id/createAccountTextViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:text="SHOPIFY"
-            android:textColor="@color/colorPrimaryText"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="15dp"
+            android:text="CREATE ACCOUNT"
+            android:textColor="@color/colorTextIcons"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0" />
-
-        <TextView
-            android:id="@+id/createAccountTextViewTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:text="CREATE ACCOUNT"
-            android:textColor="@color/colorSecondaryText"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.131" />
+            app:layout_constraintVertical_bias="0.033" />
 
         <EditText
             android:id="@+id/userNameEditText"
@@ -81,7 +86,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintVertical_bias="0.20"
             app:layout_constraintWidth_percent=".8" />
 
         <EditText
@@ -102,7 +107,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.37"
+            app:layout_constraintVertical_bias="0.33"
             app:layout_constraintWidth_percent=".8" />
 
         <EditText
@@ -123,7 +128,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.49"
+            app:layout_constraintVertical_bias="0.46"
             app:layout_constraintWidth_percent=".8" />
 
         <EditText
@@ -144,7 +149,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.61"
+            app:layout_constraintVertical_bias="0.59"
             app:layout_constraintWidth_percent=".8" />
 
         <Button
@@ -155,12 +160,14 @@
             android:text="Sign Up"
             android:textAllCaps="false"
             android:textSize="16sp"
+            android:textColor="@color/colorPrimary"
+            android:backgroundTint="@color/colorTextIcons"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75"
+            app:layout_constraintVertical_bias="0.74"
             app:layout_constraintWidth_percent=".8" />
 
         <TextView
@@ -168,30 +175,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Or log in here..."
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorTextIcons"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.85"
+            app:layout_constraintVertical_bias="0.83"
             app:layout_constraintWidth_percent=".8" />
-
-        <Button
-            android:layout_width="35dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:backgroundTint="@color/colorTextIcons"
-            android:padding="0dp"
-            android:drawableEnd="@drawable/ic_baseline_arrow_back_ios_24"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.94" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

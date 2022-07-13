@@ -4,23 +4,30 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+<<<<<<< HEAD
 import android.view.View;
+=======
+>>>>>>> 12445cc6b547f08d0e1286d0dddc5bdf98f10c47
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.uchumi.shopify.ui.fragments.HomeFragment;
 import com.uchumi.shopify.ui.fragments.LoginFragment;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.ui.fragments.SavedItemsFragment;
+import com.uchumi.shopify.ui.fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +35,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+        /*bottomNav.setItemIconTintList(null);*/
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HomeFragment()).commit();
+                    new SearchFragment()).commit();
         }
     }
     public void onCustomToggleClick (View view){
@@ -55,7 +63,16 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new LoginFragment();
                             break;
                         case R.id.nav_favorites:
-                            selectedFragment = new SavedItemsFragment();
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if(user == null){
+                                selectedFragment = new LoginFragment();
+                                break;
+                            } else {
+                                selectedFragment = new SavedItemsFragment();
+                                break;
+                            }
+                            case R.id.nav_search:
+                            selectedFragment = new SearchFragment();
                             break;
                     }
 
@@ -85,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void logout() {
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(MainActivity.this, SplashScreenActivity.class);
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

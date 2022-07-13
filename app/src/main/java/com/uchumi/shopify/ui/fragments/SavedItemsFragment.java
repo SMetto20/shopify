@@ -1,10 +1,14 @@
 package com.uchumi.shopify.ui.fragments;
 
 
+import static android.view.View.GONE;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,14 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.uchumi.shopify.Constants;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.adapters.FirebaseProductsAdapter;
 import com.uchumi.shopify.models.Offer;
-
-import org.parceler.Parcels;
+import com.uchumi.shopify.ui.CreateAccountActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,22 +34,40 @@ import butterknife.ButterKnife;
 
 public class SavedItemsFragment extends Fragment {
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     DatabaseReference mDatabase;
     FirebaseRecyclerAdapter<Offer, FirebaseProductsAdapter> mFirebaseAdapter;
-    @BindView(R.id.favouritesRecyclerView) RecyclerView mRecyclerView;
+    @BindView(R.id.favouritesRecyclerView)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.textViewHolder) TextView mTextViewHolder;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_saved_items, container, false);
         ButterKnife.bind(this, view);
-        setUpFirebaseAdapter();
         return view;
     }
 
-    private void setUpFirebaseAdapter() {
-        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user == null){
+            Intent intent = new Intent(getActivity(), CreateAccountActivity.class);
+            startActivity(intent);
+        }
+        String uid = user.getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_PRODUCTS).child(uid);
+        setUpFirebaseAdapter(mDatabase, uid);
+        mRecyclerView.setVisibility(View.VISIBLE);
+        mAuth = FirebaseAuth.getInstance();
+    }
+
+    private void setUpFirebaseAdapter( DatabaseReference mDatabase, String userId) {
         FirebaseRecyclerOptions<Offer> options = new FirebaseRecyclerOptions.Builder<Offer>()
                 .setQuery(mDatabase, Offer.class)
                 .build();
@@ -52,13 +75,14 @@ public class SavedItemsFragment extends Fragment {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Offer, FirebaseProductsAdapter>(options) {
             @Override
             protected void onBindViewHolder(@NonNull FirebaseProductsAdapter holder, int position, @NonNull Offer model) {
-                holder.bindProduct(model);
+                holder.bindProduct(model, userId);
             }
 
             @NonNull
             @Override
             public FirebaseProductsAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.saved_recycler_view_list_item, parent, false);
+                mTextViewHolder.setVisibility(GONE);
                 return new FirebaseProductsAdapter(view);
             }
         };
@@ -69,12 +93,20 @@ public class SavedItemsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        mFirebaseAdapter.startListening();
+        if (mAuthListener != null) {
+            mAuth.addAuthStateListener(mAuthListener);
+        }
+        if (mFirebaseAdapter != null) {
+            mFirebaseAdapter.startListening();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
         if (mFirebaseAdapter != null) {
             mFirebaseAdapter.stopListening();
         }
