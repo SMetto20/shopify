@@ -24,11 +24,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.OAuthProvider;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.ui.CreateAccountActivity;
 import com.uchumi.shopify.ui.MainActivity;
@@ -66,8 +69,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.googleButton) FloatingActionButton mGoogleButton;
 
-    @SuppressLint("NonConstantResourceId")
-    @BindView(R.id.facebookButton) FloatingActionButton mFacebookButton;
+//    @SuppressLint("NonConstantResourceId")
+//    @BindView(R.id.facebookButton) FloatingActionButton mFacebookButton;
 
     @SuppressLint("NonConstantResourceId")
     @BindView(R.id.twitterButton) FloatingActionButton mTwitterButton;
@@ -121,7 +124,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         mLoginButton.setOnClickListener(this);
         mGoogleButton.setOnClickListener(this);
         mTwitterButton.setOnClickListener(this);
-        mFacebookButton.setOnClickListener(this);
+//        mFacebookButton.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -153,9 +156,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         if(v == mTwitterButton){
             SignInTwitter();
         }
-        if (v == mFacebookButton){
-            SignInFaceBook();
-        }
+//        if (v == mFacebookButton){
+//            SignInFaceBook();
+//        }
         if (v == mBackHomeButton){
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
@@ -211,12 +214,52 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
 
     private void SignInTwitter() {
-        Toast.makeText(getActivity(), "Under construction", Toast.LENGTH_SHORT).show();
-    }
+        OAuthProvider.Builder provider = OAuthProvider.newBuilder("twitter.com");
+        provider.addCustomParameter("lang", "en");
 
-    private void SignInFaceBook() {
-        Toast.makeText(getActivity(), "Under construction", Toast.LENGTH_SHORT).show();
+        Task<AuthResult> pendingResultTask = mAuth.getPendingAuthResult();
+        if (pendingResultTask != null) {
+            pendingResultTask
+                    .addOnSuccessListener(
+                            new OnSuccessListener<AuthResult>() {
+                                @Override
+                                public void onSuccess(AuthResult authResult) {
+                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            })
+                    .addOnFailureListener(
+                            new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+        }
+        else {
+            mAuth
+                    .startActivityForSignInWithProvider(getActivity(), provider.build())
+                    .addOnSuccessListener(
+                            new OnSuccessListener<AuthResult>() {
+                                @Override
+                                public void onSuccess(AuthResult authResult) {
+                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            })
+                    .addOnFailureListener(
+                            new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getActivity(), "Unable to sign in"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+        }
+
     }
+//    private void SignInFaceBook() {
+//        Toast.makeText(getActivity(), "Under construction", Toast.LENGTH_SHORT).show();
+//    }
 
     @Override
     public void onStart() {

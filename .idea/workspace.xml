@@ -20,6 +20,7 @@
       <change afterPath="$PROJECT_DIR$/app/src/main/java/com/uchumi/shopify/adapters/SuggestionProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/Shopify.app.androidTest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Shopify.app.androidTest.iml" afterDir="false" />
@@ -36,6 +37,11 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/uchumi/shopify/ui/fragments/ProductDetailFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/uchumi/shopify/ui/fragments/ProductDetailFragment.java" afterDir="false" />
 >>>>>>> d4ff388a410b22e27b8ac6f5b4b5a6e1e0f06ac4
 >>>>>>> 12445cc6b547f08d0e1286d0dddc5bdf98f10c47
+=======
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_popular.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_popular.xml" afterDir="false" />
+>>>>>>> ff3da21ae4c216f17c0bfbc21682c4c758d33534
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,10 +49,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/sandra/.android/avd/Pixel_2_API_28.avd]" />
 =======
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/drumumba/.android/avd/Pixel_4_API_28.avd]" />
 >>>>>>> 12445cc6b547f08d0e1286d0dddc5bdf98f10c47
+=======
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/moringa/.android/avd/Pixel_3a_API_28.avd]" />
+>>>>>>> ff3da21ae4c216f17c0bfbc21682c4c758d33534
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -99,6 +109,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev1" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2B9hKD7BuI1Xf6zqFURDsCZNMyW" />
