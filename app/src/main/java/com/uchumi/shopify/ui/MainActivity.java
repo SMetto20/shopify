@@ -23,8 +23,6 @@ import com.uchumi.shopify.ui.fragments.SavedItemsFragment;
 import com.uchumi.shopify.ui.fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
-    Context mContext;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {

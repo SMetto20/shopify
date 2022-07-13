@@ -162,10 +162,6 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         if (v == mLoginTextView) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
-            /*Intent intent = new Intent(CreateAccountActivity.this, LoginFragment.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();*/
         }
         if (v == mSignUpButton) {
             createNewUser();

@@ -84,7 +84,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             public void onClick(View v) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if(user == null){
-                    Toast.makeText(context, "Login to view favourites", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Login to add to favourites", Toast.LENGTH_LONG).show();
                 } else {
                     String uid = user.getUid();
                     DatabaseReference mDatabase = FirebaseDatabase
