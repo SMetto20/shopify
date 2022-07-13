@@ -13,11 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.models.CategoryItem;
-import com.uchumi.shopify.models.Offer;
-import com.uchumi.shopify.models.Offers;
 import com.uchumi.shopify.ui.PopularActivity;
-import com.uchumi.shopify.ui.fragments.HomeFragment;
-import com.uchumi.shopify.ui.fragments.SearchFragment;
 
 import java.util.List;
 

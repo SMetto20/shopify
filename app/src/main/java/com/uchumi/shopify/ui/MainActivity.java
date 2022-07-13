@@ -18,11 +18,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.uchumi.shopify.ui.fragments.HomeFragment;
+import com.uchumi.shopify.ui.fragments.SearchFragment;
 import com.uchumi.shopify.ui.fragments.LoginFragment;
 import com.uchumi.shopify.R;
 import com.uchumi.shopify.ui.fragments.SavedItemsFragment;
-import com.uchumi.shopify.ui.fragments.SearchFragment;
+import com.uchumi.shopify.ui.fragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new SearchFragment()).commit();
+                    new HomeFragment()).commit();
         }
     }
     public void onCustomToggleClick (View view){
