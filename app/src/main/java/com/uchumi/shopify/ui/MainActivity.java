@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
                     new HomeFragment()).commit();
         }
     }
+    public void onCustomToggleClick (View view){
+        Toast.makeText(this, "working", Toast.LENGTH_SHORT).show();
+
+    }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
