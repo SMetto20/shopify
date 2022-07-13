@@ -146,7 +146,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
                 Log.e("API ERROR: ",t.getMessage());
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-                builder.setMessage("You have no internet connection!")
+                builder.setMessage("Unable to retrieve item. Please try again later.")
                         .setCancelable(false)
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
@@ -156,7 +156,7 @@ public class HomeFragment extends Fragment implements SearchView.OnQueryTextList
                         });
                 AlertDialog alert = builder.create();
 
-                alert.setTitle(" Connection problem");
+                alert.setTitle("Connection problem");
                 alert.show();
 
             }

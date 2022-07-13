@@ -70,6 +70,8 @@ public class ProductDetailFragment extends Fragment {
         mProductReviewTextView.setText(mShop.getReviewCount() + " Reviews");
         mProductRatingsTextView.setText(mShop.getReviewRating());
 
+        Picasso.get().load(mShop.getImage()).into(mProductDetailsImage);
+
         return view;
     }
 }

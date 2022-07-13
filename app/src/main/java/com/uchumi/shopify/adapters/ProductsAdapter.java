@@ -76,7 +76,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             String url = "https://www.trendsetter.com/pub/media/catalog/product/placeholder/default/no_image_placeholder.jpg";
             Picasso.get().load(url).into(holder.imageView);
         } else {
-            Picasso.get().load(imageUrl).into(holder.imageView);
+            Picasso.get().load(offerList.get(position).getImage()).into(holder.imageView);
         }
 
         holder.mLikeButton.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +94,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
                     String pushId = mDatabase.push().getKey();
                     offerList.get(position).setPushId(pushId);
-//                mDatabase.push().setValue(offerList.get(position));
                     Thread thread = new Thread() {
                         @Override
                         public void run() {
@@ -125,6 +124,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
                     Document document = Jsoup.connect(offerList.get(position).getUrl()).timeout(6000)   .get();
                     Elements elements = document.select("div.oR27Gd");
                     imageUrl = elements.select("img").attr("src");
+                    offerList.get(position).setImage(imageUrl);
                     Log.i("imageUrl", imageUrl);
                 } catch (IOException e) {
                     e.printStackTrace();
