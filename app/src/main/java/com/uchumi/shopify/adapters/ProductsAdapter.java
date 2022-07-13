@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -153,8 +154,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
 
    TextView mTerm, mPrice, mSeller, mShipping, mRating;
-
-   ImageView imageView, mLikeButton;
+   ImageView imageView;
+   ToggleButton mLikeButton;
 
         private Context mContext;
 
