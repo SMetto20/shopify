@@ -11,11 +11,16 @@
 
 ### Description
 Shopify is an application that provides a users with the most effective products from different online stores by utilizing a marginal benefit and cost benefit formula to achieve this.The API used is the google shopping data API which retrieves products from various stores.
-### Technology
 
+### Built With
+* [Gradle](https://gradle.org/)
+
+### Technology
 1. Java 
 2. Gradle
 3. Android studio
+4. Jsoup
+5. Firebase
 
 
 ```Java 
@@ -48,6 +53,8 @@ System.out.prntln("hello world")
 3. Install Gradle.
 4. Git clone
 5. Run the application on Android Studio.
+6. Subscribe to [Google Shopping Data](https://rapidapi.com/3b-data-3b-data default/api/google-shopping-data/) to get an api key.
+7. Create a database on [Firebase](https://firebase.google.com/) to store data.
 
 ### License
 Licensed under [MIT License](LICENSE)
