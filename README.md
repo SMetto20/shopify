@@ -53,7 +53,7 @@ System.out.prntln("hello world")
 3. Install Gradle.
 4. Git clone
 5. Run the application on Android Studio.
-6. Subscribe to [Google Shopping Data](https://rapidapi.com/3b-data-3b-data default/api/google-shopping-data/) to get an api key.
+6. Subscribe to [Google Shopping Data](https://rapidapi.com/3b-data-3b-data-default/api/google-shopping-data/) to get an api key.
 7. Create a database on [Firebase](https://firebase.google.com/) to store data.
 
 ### License
